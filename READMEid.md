@@ -147,5 +147,3 @@ Ikuti instruksi berikut untuk menjalankan proyek ini di mesin lokal Anda.
   </tr>
 </table>
 
----
-Dibuat dengan ❤️ untuk tugas sekolah.
