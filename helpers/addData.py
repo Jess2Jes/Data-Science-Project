@@ -1,7 +1,7 @@
 from datetime import datetime
 tasks = []
 
-def tambah_task(task):
+def tambah_task():
     while True :
         try:
             total_task = int(input("Berapa total task yang ingin ditambahkan : "));print()
@@ -10,9 +10,9 @@ def tambah_task(task):
             print("Input tidak valid. Harap masukkan angka.")
             continue
         
-    for task in range(total_task):
+    for task in range(1, total_task + 1):
         while True:
-            task = str(input("Masukkan task : ")).lower()
+            task = str(input(f"Task {task} : ")).lower()
             dupe = False
             for i in tasks:
                 if task == i[0].lower():
@@ -42,10 +42,8 @@ def tambah_task(task):
         tasks.append((task, waktu))
                 
 def daftar_task():
-    print("─────────────Daftar Task─────────────")
+    print("─────────────Daftar Task───────────────────")
     print(f"Total Task : {len(tasks)}")
     for i in range(len(tasks)):
         print(f"{i+1}. {tasks[i][0].lower().capitalize()} - {tasks[i][1].strftime('%Y %d %B %I:%M %p')}")
     
-tambah_task(tasks)
-daftar_task()
