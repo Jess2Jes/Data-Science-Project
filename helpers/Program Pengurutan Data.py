@@ -30,7 +30,3 @@ def cetak_data_sorted(datas):
     for idx, data in enumerate(datas,start=1):
         print(f"-> Tugas-{idx}: {data[0].title()} ({data[1]})")
     print("\n" + "-"*80)
-
-cetak_data_unsorted(datas)
-new_datas = urutkan_task(datas)
-cetak_data_sorted(new_datas)
