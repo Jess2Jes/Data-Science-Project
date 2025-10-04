@@ -145,6 +145,3 @@ your-project-name/
     </td>
   </tr>
 </table>
-
----
-为学校作业而用心制作 ❤️
