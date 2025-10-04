@@ -1,3 +1,4 @@
+English | | [Bahasa Indonesia](READMEid.md) | [中文](READMECN.md)
 # TaskMaster CLI: Python Task Management System
 
 ![Python](https://img.shields.io/badge/python-3.x-blue.svg)
