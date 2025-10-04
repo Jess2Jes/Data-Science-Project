@@ -35,9 +35,9 @@ def print_table(title, data):
         "status": 12
     }
 
-    print("\n" + "="*80)
+    print("\n" + "─"*80)
     print(f"{title:^80}")
-    print("="*80)
+    print("─"*80)
 
     header = f"{'ID':<{col_widths['id']}} | {'Task':<{col_widths['name']}} | {'Deadline':<{col_widths['deadline']}} | {'Priority':<{col_widths['priority']}} | {'Status':<{col_widths['status']}}"
     print(header)
@@ -46,7 +46,7 @@ def print_table(title, data):
     for t in data:
         row = f"{t['id']:<{col_widths['id']}} | {t['name']:<{col_widths['name']}} | {t['deadline']:<{col_widths['deadline']}} | {t['priority']:<{col_widths['priority']}} | {t['status']:<{col_widths['status']}}"
         print(row)
-    print("="*80)
+    print("─"*80)
 
 def filter_by_deadline(date):
     filtered = [t for t in tasks if parse_deadline(t["deadline"]) <= parse_deadline(date)]
@@ -61,13 +61,14 @@ def filter_by_status(status):
     print_table(f"Task dengan status {status}", filtered)
 
 while True:
-    print("\n===== Task Schedule Filter =====")
+    print("\n──────────Task Schedule Filter──────────")
     print("1. Lihat semua task")
     print("2. Filter berdasarkan deadline")
     print("3. Filter berdasarkan prioritas")
     print("4. Filter berdasarkan status")
     print("5. Lihat TOP 3 Task Paling Penting")
     print("6. Keluar")
+    print("──────────────────────────────────────────")
 
     pilihan = input("Pilih menu (1-6): ")
 
