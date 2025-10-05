@@ -10,6 +10,7 @@ tasks = [
     {"id": 4, "name": "Rapat Tim", "deadline": "2025-10-04 15:00", "priority": "Low", "status": "Completed"},
     {"id": 5, "name": "Kerjakan Tugas PBO", "deadline": "2025-10-04 15:00", "priority": "High", "status": "Completed"},
 ]
+garis = "─" *25
 
 def menu_sortir():
     while True:
