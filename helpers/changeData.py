@@ -1,50 +1,46 @@
-#ec
-# Penghapusan data
-
-data_schedules = [
-    ("Beras 5kg", "Rp 75.000"),
-    ("Minyak Goreng 2L", "Rp 40.000"),
-    ("Telur 1kg", "Rp 28.000"),
-    ("Gula Pasir 1kg", "Rp 15.000"),
-    ("Sabun Mandi", "Rp 10.000"),
-    ("Shampoo", "Rp 25.000")
-]
-
 def cetak_data_awal(tasks):
-    print()
-    print("Daftar Barang Belanjaan Sebelum Dihapus")
-    print()
+    print("\nDaftar Tugas Sebelum Dihapus\n")
     for idx, data in enumerate(tasks, start=1):
-        print(f"{idx}.Barang : {data[0]} (Harga: {data[1]})")
+        print(f"{idx}. {data['name']}, {data['deadline']}, {data['priority']}, {data['status']}")
 
-def hapus_data(tasks, nama_barang):
+def hapus_data(tasks, name):
     for data in tasks:
-        if data[0].lower() == nama_barang.lower():
+        if data["name"].lower() == name.lower():
             tasks.remove(data)
             return True
     return False
 
-def cetak_data_hapus(datas):
-    print()
-    print("Daftar Barang Belanjaan Setelah Dihapus")
-    print()
-    if datas:
-        for idx, data in enumerate(data_schedules, start=1):
-            print(f"{idx}.Barang : {data[0]} (Harga: {data[1]})")
+def hapus_task_selesai(tasks):
+    for i in range(len(tasks)-1, -1, -1):
+        if tasks[i]["status"] == "Completed" :
+            tasks.pop(i)
+
+def cetak_data_hapus(tasks):
+    print("\nDaftar Tugas Setelah Dihapus\n")
+    if tasks:
+        for idx, data in enumerate(tasks, start=1):
+            print(f"{idx}. {data['name']}, {data['deadline']}, {data['priority']}, {data['status']}")
     else:
-        print("Semua barang sudah dihapus.")
+        print("Semua tugas sudah dihapus.")
 
-cetak_data_awal(data_schedules)
+def ubah_task(tasks, old_name, field, new_value):
+    for data in tasks:
+        if data["name"].lower() == old_name.lower():
+            if field in data:
+                data[field] = new_value
+                print(f"\n✅ Task '{old_name}' berhasil diubah: {field} → {new_value}")
+                return True
+            else:
+                print(f"\n⚠️ Field '{field}' tidak ditemukan!")
+                return False
+    print(f"\n⚠️ Task '{old_name}' tidak ditemukan.")
+    return False
 
-hapus = "Telur 1kg" 
-if hapus_data(data_schedules, hapus):
-    print("-"*50)
-    print(f"Barang '{hapus}' berhasil dihapus!")
-else:
-    print()
-    print(f"Barang '{hapus}' tidak ditemukan!")
-
-cetak_data_hapus(data_schedules)
-
-# ubah tasks
-# selesaikan tasks
+def selesaikan_task(tasks, name):
+    for data in tasks:
+        if data["name"].lower() == name.lower():
+            data["status"] = "Completed"
+            print(f"\n🎉 Task '{name}' telah diselesaikan!")
+            return True
+    print(f"\n⚠️ Task '{name}' tidak ditemukan.")
+    return False

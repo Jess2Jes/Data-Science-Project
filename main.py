@@ -2,6 +2,7 @@ from helpers.addData import *
 from helpers.dataFilters import *
 from helpers.laporan import *
 from helpers.sorter import *
+from helpers.changeData import *
 
 tasks = [
     {"id": 1, "name": "Kerjakan Tugas Basis Data", "deadline": "2025-10-05 13:00", "priority": "High", "status": "Pending"},
@@ -10,6 +11,7 @@ tasks = [
     {"id": 4, "name": "Rapat Tim", "deadline": "2025-10-04 15:00", "priority": "Low", "status": "Completed"},
     {"id": 5, "name": "Kerjakan Tugas PBO", "deadline": "2025-10-04 15:00", "priority": "High", "status": "Completed"},
 ]
+garis = "─" *25
 
 def menu_sortir():
     while True:
@@ -118,33 +120,69 @@ def menu_filter():
             print("Pilihan tidak valid, coba lagi.")
     
 def menu_utama():
-    print()
-    print("────────────────────Menu────────────────────")
+    print("\n────────────────────Menu────────────────────")
     print("1. Tambah Task")
     print("2. Daftar Task")
     print("3. Cari Task")
     print("4. Sortir Task")
     print("5. Laporan Statistik")
     print("6. Filter")
-    print("7. Keluar")
+    print("7. Hapus Task")
+    print("8. Ubah Task")
+    print("9. Tandai Task Selesai")
+    print("10. Keluar")
     print("────────────────────────────────────────────")
+    
     
 while True :
     menu_utama()
     pilihan = input("Pilihan : ")
     if pilihan == "1":
         tambah_task(tasks)
+        
     elif pilihan == "2":
         data_task("Semua Task", tasks)
+        
     elif pilihan == "3":
         pass
     elif pilihan == "4":
         menu_sortir()
+        
     elif pilihan == "5":
         laporan_statistik(tasks)
+        
     elif pilihan == "6":
         menu_filter()
+        
     elif pilihan == "7":
+        print("Hapus Task:")
+        print("1. Hapus task secara spesifik")
+        print("2. Hapus semua task yang sudah selesai")
+        opsi_hapus = input("Pilih opsi (1/2): ")
+
+        if opsi_hapus == "1":
+            hapus = input("Masukkan nama tugas yang ingin dihapus: ")
+            if hapus_data(tasks, hapus):
+                print(f"\n✅ Tugas '{hapus}' berhasil dihapus!")
+            else:
+                print(f"\n⚠️ Tugas '{hapus}' tidak ditemukan!")
+        elif opsi_hapus == "2":
+            hapus_task_selesai(tasks)  # pastikan fungsi ini menghapus semua task status Completed
+            print("\n✅ Semua task yang selesai berhasil dihapus!")
+        else:
+            print("Pilihan tidak valid, coba lagi.")
+
+    elif pilihan == "8":
+        old_name = input("Nama task yang ingin diubah: ")
+        field = input("Field yang ingin diubah (name/deadline/priority/status): ").lower()
+        new_value = input("Masukkan nilai baru: ")
+        ubah_task(tasks, old_name, field, new_value)
+        
+    elif pilihan == "9":
+        name = input("Nama task yang ingin diselesaikan: ").lower()
+        selesaikan_task(tasks, name)
+        
+    elif pilihan == "10":
         break
-
-
+    else:
+        print("Pilihan tidak valid, coba lagi.")
