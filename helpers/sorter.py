@@ -14,6 +14,14 @@ def urutkan_task_name_asc(tasks):
 def urutkan_task_name_dsc(tasks):
     tasks.sort(key=lambda x: x["name"], reverse=True)
 
+# Proses pengurutan data berdasarkan id (ascending)
+def urutkan_task_id_asc(tasks):
+    tasks.sort(key=lambda x: x["id"])
+
+# Proses pengurutan data berdasarkan id (ascending)
+def urutkan_task_id_dsc(tasks):
+    tasks.sort(key=lambda x: x["id"], reverse=True)
+
 # Proses pengurutan data berdasarkan priority (Low -> Medium -> High)
 def urutkan_task_priority_asc(tasks):
     task_priority = {"Low": 1, "Medium": 2, "High": 3}
