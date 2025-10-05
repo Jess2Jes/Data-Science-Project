@@ -47,10 +47,10 @@ def data_task(title, data):
     for t in data:
         row = (
             str(t["id"]).ljust(col_widths["id"]) + " │ " +
-            t["name"].ljust(col_widths["name"]) + " │ " +
-            t["deadline"].ljust(col_widths["deadline"]) + " │ " +
-            t["priority"].ljust(col_widths["priority"]) + " │ " +
-            t["status"].ljust(col_widths["status"])
+            t["name"].capitalize().ljust(col_widths["name"]) + " │ " +
+            t["deadline"].capitalize().ljust(col_widths["deadline"]) + " │ " +
+            t["priority"].capitalize().ljust(col_widths["priority"]) + " │ " +
+            t["status"].capitalize().ljust(col_widths["status"])
         )
         print(row)
 
