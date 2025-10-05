@@ -9,50 +9,40 @@ Sebuah aplikasi manajemen tugas berbasis *command-line* yang komprehensif dan di
 ## ✨ Fitur Utama
 
 -   **Fungsionalitas CRUD Penuh**: Tambah, lihat, perbarui, dan hapus tugas dengan mudah.
--   **Filter Tingkat Lanjut**: Filter tugas secara dinamis berdasarkan **status** (`Tertunda`, `Sedang Dikerjakan`, `Selesai`), **prioritas** (`Tinggi`, `Sedang`, `Rendah`), atau **tenggat waktu** (*deadline*).
--   **Pengurutan Cerdas**: Urutkan tugas secara kronologis secara otomatis untuk menjaga jadwal Anda tetap terorganisir.
+-   **Pengurutan Tingkat Lanjut**: Urutkan tugas berdasarkan **tenggat waktu**, **nama**, **prioritas**, atau **status** dalam urutan menaik (*ascending*) dan menurun (*descending*).
+-   **Penyaringan Cerdas**: Filter tugas secara dinamis berdasarkan berbagai periode waktu (`hari ini`, `besok`, `minggu ini`, `bulan ini`), prioritas, atau status.
 -   **Prioritas Tugas**: Lihat "3 Tugas Paling Penting" secara instan berdasarkan kombinasi prioritas dan tenggat waktu yang akan datang.
--   **Pencarian Dinamis**: Temukan tugas apa pun dengan cepat berdasarkan namanya.
--   **Laporan Statistik**: Hasilkan laporan terperinci yang mencakup total tugas, rincian status, dan penugasan pengguna.
+-   **Aksi Cepat**: Tandai tugas sebagai "Selesai" dengan mudah atau hapus semua tugas yang sudah selesai sekaligus.
+-   **Laporan Statistik**: Hasilkan laporan terperinci dengan format yang indah, mencakup total tugas, rincian status, dan statistik prioritas.
 -   **Antarmuka yang Ramah Pengguna**: Antarmuka berbasis menu yang sederhana dan intuitif untuk navigasi yang lancar.
 -   **Format Tabel Dinamis**: Daftar tugas ditampilkan dalam tabel yang diformat dengan rapi dan ukurannya menyesuaikan dengan panjang konten.
 
 ## 📸 Demo
 
-Berikut adalah tampilan menu utama dan contoh output daftar tugas:
+Berikut adalah tampilan menu utama baru dan contoh output daftar tugas:
 
 **Menu Utama:**
-```
-────────────────────Menu────────────────────
-1. Tambah Task
-2. Daftar Task
-3. Cari Task
-4. Sortir Task
-5. Laporan Statistik
-6. Filter
-7. Keluar
-────────────────────────────────────────────
-Pilihan : 2
-```
+
+<img src="assets/MENU_APPEARANCE.png" alt="Menu Appearance" width="300">
 
 **Contoh Output (`Daftar Task`):**
 ```
-──────────────────────────────────────────────────────────────────────────────────────────
-                                       Semua Task
-──────────────────────────────────────────────────────────────────────────────────────────
-ID │ Task                      │ Deadline            │ Priority │ Status
-──────────────────────────────────────────────────────────────────────────────────────────
-1  │ Kerjakan Tugas Basis Data │ 2025-10-05 13:00 PM │ High     │ Pending
-2  │ Belajar Algoritma         │ 2025-10-06 12:57 PM │ Medium   │ In Progress
-3  │ Buat Slide Presentasi     │ 2025-10-08 16:49 PM │ High     │ Completed
-4  │ Rapat Tim                 │ 2025-10-04 15:00 PM │ Low      │ Completed
-5  │ Kerjakan Tugas PBO        │ 2025-10-04 15:00 PM │ High     │ Completed
-──────────────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────────
+                                   Semua Task
+──────────────────────────────────────────────────────────────────────────────────
+ID │ Task                      │ Deadline              │ Priority │ Status
+──────────────────────────────────────────────────────────────────────────────────
+1  │ Kerjakan Tugas Basis Data │ 2025 05 October 13:00 │ High     │ Pending
+2  │ Belajar Algoritma         │ 2025 06 October 12:57 │ Medium   │ In Progress
+3  │ Buat Slide Presentasi     │ 2025 08 October 16:49 │ High     │ Completed
+4  │ Rapat Tim                 │ 2025 04 October 15:00 │ Low      │ Completed
+5  │ Kerjakan Tugas Pbo        │ 2025 04 October 15:00 │ High     │ Completed
+──────────────────────────────────────────────────────────────────────────────────
 ```
 
 ## 📂 Struktur Proyek
 
-Proyek ini diorganisir ke dalam file-file modular untuk keterbacaan dan pemeliharaan yang lebih baik. Disarankan untuk menempatkan skrip-skrip pembantu di dalam direktori `helpers`.
+Proyek ini diorganisir ke dalam file-file modular untuk keterbacaan dan pemeliharaan yang lebih baik.
 
 ```
 nama-proyek-anda/
@@ -60,13 +50,12 @@ nama-proyek-anda/
 └── helpers/
     ├── __init__.py
     ├── addData.py              # Menangani logika untuk menambah tugas baru
-    ├── dataFilters.py          # Fungsi untuk memfilter, mengurutkan, dan menampilkan tugas
-    ├── searchUpdateTask.py     # Mengelola pencarian dan pembaruan tugas yang ada
-    ├── deleteTask.py           # Logika untuk menghapus tugas
-    ├── sortTask.py             # Logika inti untuk mengurutkan tugas
-    └── reportStats.py          # Menghasilkan dan mencetak statistik tugas
+    ├── changeData.py           # Fungsi untuk memperbarui, menghapus, dan menandai tugas selesai
+    ├── dataFilters.py          # Fungsi untuk memfilter tugas dan menampilkan tabel data
+    ├── reports.py              # Menghasilkan dan mencetak laporan statistik
+    ├── search.py               # Mengimplementasikan fungsionalitas pencarian tugas
+    └── sorter.py               # Berisi semua fungsi untuk pengurutan tugas tingkat lanjut
 ```
-*Catatan: Nama file asli seperti `Program Pencarian & Perubahan Data.py` telah diubah menjadi `searchUpdateTask.py` dalam struktur ini untuk mengikuti konvensi penamaan standar Python.*
 
 ## 🚀 Cara Memulai
 
@@ -94,19 +83,15 @@ Ikuti instruksi berikut untuk menjalankan proyek ini di mesin lokal Anda.
 
 ## 🛠️ Gambaran Umum Modul Kode
 
--   **`main.py`**: Penggerak utama aplikasi. File ini menampilkan menu utama dan menangani input pengguna untuk menavigasi ke berbagai fungsionalitas seperti menambah, memfilter, atau melihat tugas.
--   **`helpers/addData.py`**: Berisi fungsi `tambah_task`. Modul ini meminta detail tugas kepada pengguna (nama, tenggat waktu, prioritas, status), memvalidasi input, dan menambahkan tugas baru ke dalam daftar.
--   **`helpers/dataFilters.py`**: Modul inti yang mencakup fungsi untuk:
-    -   Memfilter tugas berdasarkan tenggat waktu (`filter_by_deadline`), prioritas (`filter_by_priority`), dan status (`filter_by_status`).
-    -   Mengidentifikasi dan mengembalikan tugas-tugas terpenting (`get_top_tasks`).
-    -   Menampilkan tugas dalam tabel yang bersih dengan ukuran dinamis (`data_task`).
--   **`helpers/searchUpdateTask.py`**: Mengimplementasikan fungsionalitas pencarian untuk menemukan tugas berdasarkan namanya dan menyediakan antarmuka untuk memperbarui detailnya.
--   **`helpers/deleteTask.py`**: Menyediakan logika untuk menemukan dan menghapus tugas tertentu dari daftar data.
--   **`helpers/sortTask.py`**: Berisi logika untuk mengurutkan daftar tugas, terutama berdasarkan tenggat waktunya.
--   **`helpers/reportStats.py`**: Menghitung dan mencetak laporan ringkasan, termasuk jumlah tugas berdasarkan status, kategori, dan pengguna.
+-   **`main.py`**: Penggerak utama aplikasi. File ini menampilkan menu utama dan menangani input pengguna untuk memanggil fungsi dari modul-modul pembantu.
+-   **`helpers/addData.py`**: Berisi fungsi `tambah_task`. Modul ini meminta detail tugas kepada pengguna, memvalidasi input (misalnya, memeriksa nama duplikat dan tanggal yang valid), dan menambahkan tugas baru ke dalam daftar.
+-   **`helpers/changeData.py`**: Sebuah modul untuk memodifikasi tugas. Ini mencakup fungsi untuk memperbarui bidang tertentu dari tugas (`ubah_task`), menghapus tugas tertentu (`hapus_data`), menandai tugas sebagai selesai (`selesaikan_task`), dan membersihkan semua tugas yang telah selesai (`hapus_task_selesai`).
+-   **`helpers/dataFilters.py`**: Modul inti yang mencakup fungsi untuk memfilter tugas berdasarkan berbagai rentang waktu, prioritas, dan status. Modul ini juga berisi fungsi penting `data_task` untuk menampilkan semua data dalam tabel yang bersih dengan ukuran dinamis.
+-   **`helpers/reports.py`**: Berisi fungsi `laporan_statistik`, yang menghitung dan mencetak laporan ringkasan dalam kotak yang diformat.
+-   **`helpers/search.py`**: Mengimplementasikan fungsionalitas `cari_task` untuk menemukan dan menampilkan tugas berdasarkan pencarian kata kunci.
+-   **`helpers/sorter.py`**: Menyediakan serangkaian fungsi pengurutan yang komprehensif. Dapat mengurutkan tugas berdasarkan tenggat waktu, nama, prioritas, atau status dalam urutan menaik dan menurun.
 
 ## 👤 Kontributor
-
 
 <table border="0" cellspacing="10" cellpadding="5">
   <tr>
