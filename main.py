@@ -4,12 +4,13 @@ from helpers.laporan import *
 from helpers.sorter import *
 
 tasks = [
-    {"id": 1, "name": "Kerjakan Tugas Basis Data", "deadline": "2025-10-05 13:00", "priority": "High", "status": "Pending"},
-    {"id": 2, "name": "Belajar Algoritma", "deadline": "2025-10-06 12:57", "priority": "Medium", "status": "In Progress"},
-    {"id": 3, "name": "Buat Slide Presentasi", "deadline": "2025-10-08 16:49", "priority": "High", "status": "Completed"},
-    {"id": 4, "name": "Rapat Tim", "deadline": "2025-10-04 15:00", "priority": "Low", "status": "Completed"},
-    {"id": 5, "name": "Kerjakan Tugas PBO", "deadline": "2025-10-04 15:00", "priority": "High", "status": "Completed"},
+    {"id": 1, "name": "Kerjakan Tugas Basis Data", "deadline": "2025 05 October 13:00", "priority": "High", "status": "Pending"},
+    {"id": 2, "name": "Belajar Algoritma", "deadline": "2025 06 October 12:57", "priority": "Medium", "status": "In Progress"},
+    {"id": 3, "name": "Buat Slide Presentasi", "deadline": "2025 08 October 16:49", "priority": "High", "status": "Completed"},
+    {"id": 4, "name": "Rapat Tim", "deadline": "2025 04 October 15:00", "priority": "Low", "status": "Completed"},
+    {"id": 5, "name": "Kerjakan Tugas PBO", "deadline": "2025 04 October 15:00", "priority": "High", "status": "Completed"},
 ]
+
 garis = "─" *25
 
 def menu_sortir():

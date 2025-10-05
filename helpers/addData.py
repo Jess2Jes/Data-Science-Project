@@ -61,7 +61,7 @@ def tambah_task(tasks):
         tasks.append({
             "id": next_id,
             "name": task_name,
-            "deadline": waktu.strftime("%Y %d %B %H:%M"),  # convert datetime to string
+            "deadline": waktu.strftime("%Y %d %B %H:%M"),  # konversi datetime to string
             "priority": prioritas,
             "status": status
         })
