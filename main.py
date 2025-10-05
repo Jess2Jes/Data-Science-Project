@@ -117,6 +117,7 @@ def menu_filter():
 
         elif pilihan_filter == "5":
             print("Kembali ke menu utama.")
+            break
         else:
             print("Pilihan tidak valid, coba lagi.")
     
@@ -168,7 +169,7 @@ while True :
             else:
                 print(f"\n⚠️ Tugas '{hapus}' tidak ditemukan!")
         elif opsi_hapus == "2":
-            hapus_task_selesai(tasks)  # pastikan fungsi ini menghapus semua task status Completed
+            hapus_task_selesai(tasks)  
             print("\n✅ Semua task yang selesai berhasil dihapus!")
         else:
             print("Pilihan tidak valid, coba lagi.")
