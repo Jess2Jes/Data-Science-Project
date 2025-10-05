@@ -107,6 +107,7 @@ Ikuti instruksi berikut untuk menjalankan proyek ini di mesin lokal Anda.
 
 ## 👤 Kontributor
 
+
 <table border="0" cellspacing="10" cellpadding="5">
   <tr>
     <td align="center" style="border: 1px solid #555; padding: 10px;">
@@ -144,6 +145,13 @@ Ikuti instruksi berikut untuk menjalankan proyek ini di mesin lokal Anda.
       <br/>
       <a href="https://github.com/Milkdrinker-creator">Milkdrinker-creator</a>
     </td>
+        <td align="center" style="border: 1px solid #555; padding: 10px;">
+      <a href="https://github.com/Azelezasl">
+        <img src="https://github.com/Azelezasl.png" width="100" height="100" alt="Azelezasl" style="border-radius: 50%;"/>
+      </a>
+      <br/>
+      <a href="https://github.com/Azelezasl">Azelezasl</a>
+    </td>
+    
   </tr>
 </table>
-
