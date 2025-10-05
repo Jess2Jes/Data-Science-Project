@@ -89,13 +89,13 @@ def menu_filter_deadline():
         
 def menu_filter():
     while True:
-        print("\n──────────Task Schedule Filter──────────")
+        print(f"\n{garis}Task Schedule Filter{garis}")
         print("1. Filter berdasarkan deadline")
         print("2. Filter berdasarkan prioritas")
         print("3. Filter berdasarkan status")
         print("4. Lihat TOP 3 Task Paling Penting")
         print("5. Keluar dari menu filter")
-        print("──────────────────────────────────────────")
+        print(f"{garis*2}")
 
         pilihan_filter = input("Pilih menu (1-6): ")
 
