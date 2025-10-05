@@ -22,23 +22,9 @@ A comprehensive, command-line based task management application built with Pytho
 Here's a quick look at the new main menu and the formatted task list output:
 
 **Main Menu:**
-```
-╭──────────────────────────────╮
-│         📜 MAIN MENU         │
-╰──────────────────────────────╯
-╭───────────────────────────────╮
-│ 1.  📝 Tambah Task            │
-│ 2.  📋 Daftar Task            │
-│ 3.  🔍 Cari Task              │
-│ 4.  🧩 Sortir Task            │
-│ 5.  📊 Laporan Statistik      │
-│ 6.  🧭 Filter                 │
-│ 7.  🗑️  Hapus Task             │
-│ 8.  ✏️  Ubah Task              │
-│ 9.  ✅ Tandai Task Selesai    │
-│ 10. 🚪 Keluar                 │
-╰───────────────────────────────╯
-```
+
+<img src="assets/MENU_APPEARANCE.png" alt="Menu Appearance" width="300">
+
 
 **Sample Output (`Daftar Task`):**
 ```
