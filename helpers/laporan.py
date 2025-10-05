@@ -1,11 +1,9 @@
 from datetime import datetime
-
 def laporan_statistik(tasks, garis="─"):
     if not tasks:
         print("Belum ada task untuk ditampilkan.")
         return
 
-    # Prepare content lines
     lines = []
 
     lines.append(f"Total tugas: {len(tasks)}")
