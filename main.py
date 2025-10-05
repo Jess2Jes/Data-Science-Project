@@ -110,7 +110,7 @@ def menu_filter():
         print("3. Filter berdasarkan status")
         print("4. Lihat TOP 3 Task Paling Penting")
         print("5. Keluar dari menu filter")
-        print(f"{garis*2}")
+        print(f"{garis*2 + "─"*20}")
 
         pilihan_filter = input("Pilih menu (1-5): ")
 
