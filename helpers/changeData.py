@@ -22,19 +22,39 @@ def cetak_data_hapus(tasks):
             print(f"{idx}. {data['name']}, {data['deadline']}, {data['priority']}, {data['status']}")
     else:
         print("Semua tugas sudah dihapus.")
+from datetime import datetime
 
 def ubah_task(tasks, old_name, field, new_value):
     for data in tasks:
         if data["name"].lower() == old_name.lower():
-            if field in data:
-                data[field] = new_value
-                print(f"\n✅ Task '{old_name}' berhasil diubah: {field} → {new_value}")
-                return True
-            else:
+            if field not in data:
                 print(f"\n⚠ Field '{field}' tidak ditemukan!")
                 return False
+
+            if field == "deadline":
+                try:
+                    datetime.strptime(new_value, "%Y %d %B %H:%M")
+                except ValueError:
+                    print("\n⚠ Format deadline tidak valid! Gunakan format: YYYY DD Month HH:MM")
+                    return False
+
+            elif field == "priority":
+                if new_value not in ["High", "Medium", "Low"]:
+                    print("\n⚠ Prioritas hanya boleh: High / Medium / Low")
+                    return False
+
+            elif field == "status":
+                if new_value not in ["Pending", "In Progress", "Completed"]:
+                    print("\n⚠ Status hanya boleh: Pending / In Progress / Completed")
+                    return False
+
+            data[field] = new_value
+            print(f"\n✅ Task '{old_name}' berhasil diubah: {field} → {new_value}")
+            return True
+
     print(f"\n⚠ Task '{old_name}' tidak ditemukan.")
     return False
+
 
 def selesaikan_task(tasks, name):
     for data in tasks:
