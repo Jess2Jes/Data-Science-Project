@@ -1,4 +1,4 @@
-English | | [Bahasa Indonesia](READMEid.md) | [中文](READMECN.md)
+English | [Bahasa Indonesia](READMEid.md) | [中文](READMECN.md)
 # TaskMaster CLI: Python Task Management System
 
 ![Python](https://img.shields.io/badge/python-3.x-blue.svg)
@@ -9,50 +9,55 @@ A comprehensive, command-line based task management application built with Pytho
 ## ✨ Key Features
 
 -   **Full CRUD Functionality**: Add, view, update, and delete tasks with ease.
--   **Advanced Filtering**: Dynamically filter tasks by **status** (`Pending`, `In Progress`, `Completed`), **priority** (`High`, `Medium`, `Low`), or **deadline**.
--   **Smart Sorting**: Automatically sort tasks chronologically to keep your schedule organized.
+-   **Advanced Sorting**: Sort tasks by **deadline**, **name**, **priority**, or **status** in both ascending and descending order.
+-   **Smart Filtering**: Dynamically filter tasks by various time periods (`today`, `tomorrow`, `this week`, `this month`), priority, or status.
 -   **Task Prioritization**: Instantly view the "Top 3 Most Important Tasks" based on a combination of priority and upcoming deadlines.
--   **Dynamic Search**: Quickly find any task by its name.
--   **Statistical Reporting**: Generate a detailed report including total tasks, status breakdowns, and user assignments.
+-   **Quick Actions**: Easily mark tasks as "Completed" or delete all finished tasks at once.
+-   **Statistical Reporting**: Generate a detailed and beautifully formatted report including total tasks, status breakdowns, and priority statistics.
 -   **User-Friendly Interface**: A simple and intuitive menu-driven interface for seamless navigation.
 -   **Dynamic Table Formatting**: Task lists are displayed in neatly formatted tables that adjust to the content length.
 
 ## 📸 Demo
 
-Here's a quick look at the main menu and the formatted task list output:
+Here's a quick look at the new main menu and the formatted task list output:
 
 **Main Menu:**
 ```
-────────────────────Menu────────────────────
-1. Tambah Task
-2. Daftar Task
-3. Cari Task
-4. Sortir Task
-5. Laporan Statistik
-6. Filter
-7. Keluar
-────────────────────────────────────────────
-Pilihan : 2
+╭──────────────────────────────╮
+│         📜 MAIN MENU         │
+╰──────────────────────────────╯
+╭───────────────────────────────╮
+│ 1.  📝 Tambah Task            │
+│ 2.  📋 Daftar Task            │
+│ 3.  🔍 Cari Task              │
+│ 4.  🧩 Sortir Task            │
+│ 5.  📊 Laporan Statistik      │
+│ 6.  🧭 Filter                 │
+│ 7.  🗑️  Hapus Task             │
+│ 8.  ✏️  Ubah Task              │
+│ 9.  ✅ Tandai Task Selesai    │
+│ 10. 🚪 Keluar                 │
+╰───────────────────────────────╯
 ```
 
 **Sample Output (`Daftar Task`):**
 ```
-──────────────────────────────────────────────────────────────────────────────────────────
-                                       Semua Task
-──────────────────────────────────────────────────────────────────────────────────────────
-ID │ Task                      │ Deadline            │ Priority │ Status
-──────────────────────────────────────────────────────────────────────────────────────────
-1  │ Kerjakan Tugas Basis Data │ 2025-10-05 13:00 PM │ High     │ Pending
-2  │ Belajar Algoritma         │ 2025-10-06 12:57 PM │ Medium   │ In Progress
-3  │ Buat Slide Presentasi     │ 2025-10-08 16:49 PM │ High     │ Completed
-4  │ Rapat Tim                 │ 2025-10-04 15:00 PM │ Low      │ Completed
-5  │ Kerjakan Tugas PBO        │ 2025-10-04 15:00 PM │ High     │ Completed
-──────────────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────────
+                                   Semua Task
+──────────────────────────────────────────────────────────────────────────────────
+ID │ Task                      │ Deadline              │ Priority │ Status
+──────────────────────────────────────────────────────────────────────────────────
+1  │ Kerjakan Tugas Basis Data │ 2025 05 October 13:00 │ High     │ Pending
+2  │ Belajar Algoritma         │ 2025 06 October 12:57 │ Medium   │ In Progress
+3  │ Buat Slide Presentasi     │ 2025 08 October 16:49 │ High     │ Completed
+4  │ Rapat Tim                 │ 2025 04 October 15:00 │ Low      │ Completed
+5  │ Kerjakan Tugas Pbo        │ 2025 04 October 15:00 │ High     │ Completed
+──────────────────────────────────────────────────────────────────────────────────
 ```
 
 ## 📂 Project Structure
 
-The project is organized into modular files for better readability and maintenance. It is recommended to place the helper scripts inside a `helpers` directory.
+The project is organized into modular files for better readability and maintenance.
 
 ```
 your-project-name/
@@ -60,13 +65,12 @@ your-project-name/
 └── helpers/
     ├── __init__.py
     ├── addData.py              # Handles logic for adding new tasks
-    ├── dataFilters.py          # Functions for filtering, sorting, and displaying tasks
-    ├── searchUpdateTask.py     # Manages searching and updating existing tasks
-    ├── deleteTask.py           # Logic for deleting tasks
-    ├── sortTask.py             # Core sorting logic for tasks
-    └── reportStats.py          # Generates and prints task statistics
+    ├── changeData.py           # Functions for updating, deleting, and marking tasks as complete
+    ├── dataFilters.py          # Functions for filtering tasks and displaying the data table
+    ├── reports.py              # Generates and prints the statistical report
+    ├── search.py               # Implements the task search functionality
+    └── sorter.py               # Contains all functions for advanced task sorting
 ```
-*Note: The original file names like `Program Pencarian & Perubahan Data.py` have been renamed to `searchUpdateTask.py` in this structure for standard Python naming conventions.*
 
 ## 🚀 Getting Started
 
@@ -94,16 +98,13 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 ## 🛠️ Code Modules Overview
 
--   **`main.py`**: The main driver of the application. It displays the primary menu and handles user input to navigate to different functionalities like adding, filtering, or viewing tasks.
--   **`helpers/addData.py`**: Contains the `tambah_task` function. It prompts the user for task details (name, deadline, priority, status), validates the input, and appends the new task to the list.
--   **`helpers/dataFilters.py`**: A core module that includes functions to:
-    -   Filter tasks by deadline (`filter_by_deadline`), priority (`filter_by_priority`), and status (`filter_by_status`).
-    -   Identify and return the most important tasks (`get_top_tasks`).
-    -   Display tasks in a clean, dynamically sized table (`data_task`).
--   **`helpers/searchUpdateTask.py`**: Implements the search functionality to find a task by its name and provides an interface to update its details.
--   **`helpers/deleteTask.py`**: Provides the logic to find and remove a specific task from the data list.
--   **`helpers/sortTask.py`**: Contains the logic for sorting the list of tasks, primarily based on their deadlines.
--   **`helpers/reportStats.py`**: Calculates and prints a summary report, including task counts by status, category, and user.
+-   **`main.py`**: The main driver of the application. It displays the primary menu and handles user input to call functions from the helper modules.
+-   **`helpers/addData.py`**: Contains the `tambah_task` function. It prompts the user for task details, validates input (e.g., checks for duplicate names and valid dates), and adds new tasks to the list.
+-   **`helpers/changeData.py`**: A module for modifying tasks. It includes functions to update specific fields of a task (`ubah_task`), delete a specific task (`hapus_data`), mark a task as complete (`selesaikan_task`), and clear all completed tasks (`hapus_task_selesai`).
+-   **`helpers/dataFilters.py`**: A core module that includes functions to filter tasks by various timeframes, priority, and status. It also contains the crucial `data_task` function for displaying all data in a clean, dynamically sized table.
+-   **`helpers/reports.py`**: Contains the `laporan_statistik` function, which calculates and prints a summary report in a formatted box.
+-   **`helpers/search.py`**: Implements the `cari_task` functionality to find and display tasks based on a keyword search.
+-   **`helpers/sorter.py`**: Provides a comprehensive set of sorting functions. It can sort tasks by deadline, name, priority, or status in both ascending and descending order.
 
 ## 👤 Contributors
 
@@ -154,4 +155,3 @@ Follow these instructions to get a copy of the project up and running on your lo
     
   </tr>
 </table>
-
