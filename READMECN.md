@@ -1,3 +1,5 @@
+[English](README.md) | [Bahasa Indonesia](READMEid.md) | 中文
+
 # TaskMaster CLI: Python 命令行任务管理系统
 
 ![Python](https://img.shields.io/badge/python-3.x-blue.svg)
@@ -8,50 +10,41 @@
 ## ✨ 主要功能
 
 -   **完整的 CRUD 功能**：轻松添加、查看、更新和删除任务。
--   **高级筛选**：根据**状态**（`待处理`、`进行中`、`已完成`）、**优先级**（`高`、`中`、`低`）或**截止日期**动态筛选任务。
--   **智能排序**：按时间顺序自动对任务进行排序，让您的日程安排井然有序。
+-   **高级排序**：按**截止日期**、**名称**、**优先级**或**状态**，以升序或降序对任务进行排序。
+-   **智能筛选**：按不同的时间段（`今日`、`明日`、`本周`、`本月`）、优先级或状态动态筛选任务。
 -   **任务优先级排序**：根据优先级和截止日期的组合，即时查看“前 3 个最重要任务”。
--   **动态搜索**：通过任务名称快速找到任何任务。
--   **统计报告**：生成详细报告，包括任务总数、各状态分类统计以及用户分配情况。
+-   **快捷操作**：轻松将任务标记为“已完成”，或一次性删除所有已完成的任务。
+-   **统计报告**：生成详细且格式精美的报告，包括任务总数、状态分类以及优先级统计。
 -   **用户友好的界面**：一个简单直观的菜单驱动界面，可实现无缝导航。
 -   **动态表格格式化**：任务列表以整洁的、可根据内容长度自动调整的表格形式显示。
 
 ## 📸 功能演示
 
-以下是主菜单和格式化任务列表输出的快速预览：
+以下是新版主菜单和格式化任务列表输出的快速预览：
 
 **主菜单:**
-```
-────────────────────Menu────────────────────
-1. Tambah Task
-2. Daftar Task
-3. Cari Task
-4. Sortir Task
-5. Laporan Statistik
-6. Filter
-7. Keluar
-────────────────────────────────────────────
-Pilihan : 2
-```
+
+<img src="assets/MENU_APPEARANCE.png" alt="Menu Appearance" width="300">
+
 
 **示例输出 (`Daftar Task`):**
 ```
-──────────────────────────────────────────────────────────────────────────────────────────
-                                       Semua Task
-──────────────────────────────────────────────────────────────────────────────────────────
-ID │ Task                      │ Deadline            │ Priority │ Status
-──────────────────────────────────────────────────────────────────────────────────────────
-1  │ Kerjakan Tugas Basis Data │ 2025-10-05 13:00 PM │ High     │ Pending
-2  │ Belajar Algoritma         │ 2025-10-06 12:57 PM │ Medium   │ In Progress
-3  │ Buat Slide Presentasi     │ 2025-10-08 16:49 PM │ High     │ Completed
-4  │ Rapat Tim                 │ 2025-10-04 15:00 PM │ Low      │ Completed
-5  │ Kerjakan Tugas PBO        │ 2025-10-04 15:00 PM │ High     │ Completed
-──────────────────────────────────────────────────────────────────────────────────────────
+──────────────────────────────────────────────────────────────────────────────────
+                                   Semua Task
+──────────────────────────────────────────────────────────────────────────────────
+ID │ Task                      │ Deadline              │ Priority │ Status
+──────────────────────────────────────────────────────────────────────────────────
+1  │ Kerjakan Tugas Basis Data │ 2025 05 October 13:00 │ High     │ Pending
+2  │ Belajar Algoritma         │ 2025 06 October 12:57 │ Medium   │ In Progress
+3  │ Buat Slide Presentasi     │ 2025 08 October 16:49 │ High     │ Completed
+4  │ Rapat Tim                 │ 2025 04 October 15:00 │ Low      │ Completed
+5  │ Kerjakan Tugas Pbo        │ 2025 04 October 15:00 │ High     │ Completed
+──────────────────────────────────────────────────────────────────────────────────
 ```
 
 ## 📂 项目结构
 
-该项目被组织成模块化文件，以提高可读性和可维护性。建议将辅助脚本放在 `helpers` 目录中。
+该项目被组织成模块化文件，以提高可读性和可维护性。
 
 ```
 your-project-name/
@@ -59,13 +52,12 @@ your-project-name/
 └── helpers/
     ├── __init__.py
     ├── addData.py              # 处理添加新任务的逻辑
-    ├── dataFilters.py          # 用于筛选、排序和显示任务的函数
-    ├── searchUpdateTask.py     # 管理现有任务的搜索和更新
-    ├── deleteTask.py           # 删除任务的逻辑
-    ├── sortTask.py             # 核心的任务排序逻辑
-    └── reportStats.py          # 生成并打印任务统计信息
+    ├── changeData.py           # 用于更新、删除和标记任务为完成的函数
+    ├── dataFilters.py          # 用于筛选任务和显示数据表的函数
+    ├── reports.py              # 生成并打印统计报告
+    ├── search.py               # 实现任务搜索功能
+    └── sorter.py               # 包含所有高级任务排序的函数
 ```
-*请注意：在此结构中，像 `Program Pencarian & Perubahan Data.py` 这样的原始文件名已被重命名为 `searchUpdateTask.py`，以遵循标准的 Python 命名约定。*
 
 ## 🚀 快速上手
 
@@ -93,16 +85,13 @@ your-project-name/
 
 ## 🛠️ 代码模块概览
 
--   **`main.py`**：应用程序的主要驱动程序。它显示主菜单并处理用户输入，以导航到不同的功能，如添加、筛选或查看任务。
--   **`helpers/addData.py`**：包含 `tambah_task` 函数。它会提示用户输入任务详细信息（名称、截止日期、优先级、状态），验证输入，并将新任务附加到列表中。
--   **`helpers/dataFilters.py`**：一个核心模块，包含以下函数：
-    -   按截止日期 (`filter_by_deadline`)、优先级 (`filter_by_priority`) 和状态 (`filter_by_status`) 筛选任务。
-    -   识别并返回最重要的任务 (`get_top_tasks`)。
-    -   在干净、动态调整大小的表格中显示任务 (`data_task`)。
--   **`helpers/searchUpdateTask.py`**：实现搜索功能，通过任务名称查找任务，并提供更新其详细信息的界面。
--   **`helpers/deleteTask.py`**：提供从数据列表中查找并删除特定任务的逻辑。
--   **`helpers/sortTask.py`**：包含对任务列表进行排序的逻辑，主要基于它们的截止日期。
--   **`helpers/reportStats.py`**：计算并打印摘要报告，包括按状态、类别和用户统计的任务数量。
+-   **`main.py`**：应用程序的主要驱动程序。它显示主菜单并处理用户输入，以调用辅助模块中的函数。
+-   **`helpers/addData.py`**：包含 `tambah_task` 函数。它会提示用户输入任务详细信息，验证输入（例如，检查重复名称和有效日期），并将新任务添加到列表中。
+-   **`helpers/changeData.py`**：一个用于修改任务的模块。它包括更新任务特定字段 (`ubah_task`)、删除特定任务 (`hapus_data`)、将任务标记为完成 (`selesaikan_task`) 以及清除所有已完成任务 (`hapus_task_selesai`) 的函数。
+-   **`helpers/dataFilters.py`**：一个核心模块，包含按不同时间范围、优先级和状态筛选任务的函数。它还包含关键的 `data_task` 函数，用于在干净、动态调整大小的表格中显示所有数据。
+-   **`helpers/reports.py`**：包含 `laporan_statistik` 函数，该函数以格式化的框计算并打印摘要报告。
+-   **`helpers/search.py`**：实现 `cari_task` 功能，以根据关键字搜索和显示任务。
+-   **`helpers/sorter.py`**：提供一套全面的排序函数。它可以按截止日期、名称、优先级或状态，以升序或降序对任务进行排序。
 
 ## 👤 贡献者
 
