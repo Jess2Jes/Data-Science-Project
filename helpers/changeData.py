@@ -31,9 +31,9 @@ def ubah_task(tasks, old_name, field, new_value):
                 print(f"\n✅ Task '{old_name}' berhasil diubah: {field} → {new_value}")
                 return True
             else:
-                print(f"\n⚠️ Field '{field}' tidak ditemukan!")
+                print(f"\n⚠ Field '{field}' tidak ditemukan!")
                 return False
-    print(f"\n⚠️ Task '{old_name}' tidak ditemukan.")
+    print(f"\n⚠ Task '{old_name}' tidak ditemukan.")
     return False
 
 def selesaikan_task(tasks, name):
