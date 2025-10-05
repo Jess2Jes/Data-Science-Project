@@ -10,17 +10,17 @@ data_schedules = [
     ("Shampoo", "Rp 25.000")
 ]
 
-def cetak_data_awal(data_schedules):
+def cetak_data_awal(tasks):
     print()
     print("Daftar Barang Belanjaan Sebelum Dihapus")
     print()
-    for idx, data in enumerate(data_schedules, start=1):
+    for idx, data in enumerate(tasks, start=1):
         print(f"{idx}.Barang : {data[0]} (Harga: {data[1]})")
 
-def hapus_data(data_schedules, nama_barang):
-    for data in data_schedules:
+def hapus_data(tasks, nama_barang):
+    for data in tasks:
         if data[0].lower() == nama_barang.lower():
-            data_schedules.remove(data)
+            tasks.remove(data)
             return True
     return False
 
@@ -45,3 +45,6 @@ else:
     print(f"Barang '{hapus}' tidak ditemukan!")
 
 cetak_data_hapus(data_schedules)
+
+# ubah tasks
+# selesaikan tasks

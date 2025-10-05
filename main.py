@@ -8,7 +8,25 @@ tasks = [
     {"id": 4, "name": "Rapat Tim", "deadline": "2025-10-04 15:00", "priority": "Low", "status": "Completed"},
     {"id": 5, "name": "Kerjakan Tugas PBO", "deadline": "2025-10-04 15:00", "priority": "High", "status": "Completed"},
 ]
+def menu_filter_deadline():
+    print("\nFilter berdasarkan deadline:")
+    print("1. Hari ini")
+    print("2. Besok")
+    print("3. Minggu ini")
+    print("4. Bulan ini")
+    pilihan_deadline = input("Pilih opsi (1-4): ")
 
+    if pilihan_deadline == "1":
+        filter_by_deadline("today", tasks)
+    elif pilihan_deadline == "2":
+        filter_by_deadline("tomorrow", tasks)
+    elif pilihan_deadline == "3":
+        filter_by_deadline("this week", tasks)
+    elif pilihan_deadline == "4":
+        filter_by_deadline("this month", tasks)
+    else:
+        print("Pilihan tidak valid.")
+        
 def menu_filter():
     while True:
         print("\n──────────Task Schedule Filter──────────")
@@ -22,8 +40,7 @@ def menu_filter():
         pilihan_filter = input("Pilih menu (1-6): ")
 
         if pilihan_filter == "1":
-            tanggal = input("Masukkan tanggal batas (YYYY-MM-DD): ")
-            filter_by_deadline(tanggal, tasks)
+            menu_filter_deadline()
         elif pilihan_filter == "2":
             prio = input("Masukkan prioritas (High/Medium/Low): ")
             filter_by_priority(prio, tasks)

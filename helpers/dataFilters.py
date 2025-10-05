@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 priority_map = {"High": 3, "Medium": 2, "Low": 1}
 
@@ -54,9 +54,38 @@ def data_task(title, data):
     print("─" * (sum(col_widths.values()) + 12))
 
 
-def filter_by_deadline(date, tasks):
-    filtered = [t for t in tasks if parse_deadline(t["deadline"]) <= parse_deadline(date)]
-    data_task(f"Task dengan deadline sebelum {date}", filtered)
+def filter_by_deadline(period, tasks):
+    now = datetime.now()
+    
+    if period.lower() == "today" or period.lower() == "hari ini":
+        start = datetime(now.year, now.month, now.day)
+        end = start + timedelta(days=1)
+        title_period = "Hari ini"
+        
+    elif period.lower() == "tomorrow" or period.lower() == "besok":
+        start = datetime(now.year, now.month, now.day) + timedelta(days=1)
+        end = start + timedelta(days=1)
+        title_period = "Besok"
+        
+    elif period.lower() == "this week" or period.lower() == "minggu ini":
+        start = datetime(now.year, now.month, now.day) - timedelta(days=now.weekday())
+        end = start + timedelta(days=7)
+        title_period = "Minggu ini"
+        
+    elif period.lower() == "this month" or period.lower() == "bulan ini":
+        start = datetime(now.year, now.month, 1)
+        if now.month == 12:
+            end = datetime(now.year + 1, 1, 1)
+        else :
+            end = datetime(now.year, now.month + 1, 1)
+        title_period = "Bulan ini"
+        
+    else :
+        print("Periode tidak valid.")
+        return
+    
+    filtered = [t for t in tasks if start <= parse_deadline(t["deadline"]) < end]
+    data_task(f"Task dengan deadline {title_period}", filtered)
 
 def filter_by_priority(priority, tasks):
     filtered = [t for t in tasks if t["priority"].lower() == priority.lower()]
