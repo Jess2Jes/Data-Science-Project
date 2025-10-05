@@ -2,11 +2,11 @@ from helpers.addData import *
 from helpers.dataFilters import *
 
 tasks = [
-    {"id": 1, "name": "Kerjakan Tugas Basis Data", "deadline": "2025-10-05 13:00 PM", "priority": "High", "status": "Pending"},
-    {"id": 2, "name": "Belajar Algoritma", "deadline": "2025-10-06 12:57 PM", "priority": "Medium", "status": "In Progress"},
-    {"id": 3, "name": "Buat Slide Presentasi", "deadline": "2025-10-08 16:49 PM", "priority": "High", "status": "Completed"},
-    {"id": 4, "name": "Rapat Tim", "deadline": "2025-10-04 15:00 PM", "priority": "Low", "status": "Completed"},
-    {"id": 5, "name": "Kerjakan Tugas PBO", "deadline": "2025-10-04 15:00 PM", "priority": "High", "status": "Completed"},
+    {"id": 1, "name": "Kerjakan Tugas Basis Data", "deadline": "2025-10-05 13:00", "priority": "High", "status": "Pending"},
+    {"id": 2, "name": "Belajar Algoritma", "deadline": "2025-10-06 12:57", "priority": "Medium", "status": "In Progress"},
+    {"id": 3, "name": "Buat Slide Presentasi", "deadline": "2025-10-08 16:49", "priority": "High", "status": "Completed"},
+    {"id": 4, "name": "Rapat Tim", "deadline": "2025-10-04 15:00", "priority": "Low", "status": "Completed"},
+    {"id": 5, "name": "Kerjakan Tugas PBO", "deadline": "2025-10-04 15:00", "priority": "High", "status": "Completed"},
 ]
 
 def menu_filter():
@@ -26,11 +26,11 @@ def menu_filter():
             filter_by_deadline(tanggal, tasks)
         elif pilihan_filter == "2":
             prio = input("Masukkan prioritas (High/Medium/Low): ")
-            filter_by_priority(prio)
+            filter_by_priority(prio, tasks)
 
         elif pilihan_filter == "3":
             stat = input("Masukkan status (Pending/In Progress/Completed): ")
-            filter_by_status(stat)
+            filter_by_status(stat, tasks)
 
         elif pilihan_filter == "4":
             data_task("TOP 3 Task Paling Penting", get_top_tasks(tasks, 3))
