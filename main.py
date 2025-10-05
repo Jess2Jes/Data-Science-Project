@@ -3,6 +3,7 @@ from helpers.dataFilters import *
 from helpers.laporan import *
 from helpers.sorter import *
 from helpers.changeData import *
+from helpers.search import *
 
 tasks = [
     {"id": 1, "name": "Kerjakan Tugas Basis Data", "deadline": "2025 05 October 13:00", "priority": "High", "status": "Pending"},
@@ -134,19 +135,22 @@ def menu_filter():
             print("Pilihan tidak valid, coba lagi.")
     
 def menu_utama():
-    print("\n────────────────────Menu────────────────────")
-    print("1. Tambah Task")
-    print("2. Daftar Task")
-    print("3. Cari Task")
-    print("4. Sortir Task")
-    print("5. Laporan Statistik")
-    print("6. Filter")
-    print("7. Hapus Task")
-    print("8. Ubah Task")
-    print("9. Tandai Task Selesai")
-    print("10. Keluar")
-    print("────────────────────────────────────────────")
-    
+    print("\n╭──────────────────────────────╮")
+    print("│         📜 MAIN MENU         │")
+    print("╰──────────────────────────────╯")
+    print("╭───────────────────────────────╮")
+    print("│ 1.  📝 Tambah Task            │")
+    print("│ 2.  📋 Daftar Task            │")
+    print("│ 3.  🔍 Cari Task              │")
+    print("│ 4.  🧩 Sortir Task            │")
+    print("│ 5.  📊 Laporan Statistik      │")
+    print("│ 6.  🧭 Filter                 │")
+    print("│ 7.  🗑️  Hapus Task             │")
+    print("│ 8.  ✏️  Ubah Task              │")
+    print("│ 9.  ✅ Tandai Task Selesai    │")
+    print("│ 10. 🚪 Keluar                 │")
+    print("╰───────────────────────────────╯")
+
     
 while True :
     menu_utama()
@@ -158,7 +162,8 @@ while True :
         data_task("Semua Task", tasks)
         
     elif pilihan == "3":
-        pass
+        cari_task(tasks)
+        
     elif pilihan == "4":
         menu_sortir()
         
