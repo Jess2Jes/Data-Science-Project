@@ -17,20 +17,20 @@ def urutkan_task_name_dsc(tasks):
 # Proses pengurutan data berdasarkan priority (Low -> Medium -> High)
 def urutkan_task_priority_asc(tasks):
     task_priority = {"Low": 1, "Medium": 2, "High": 3}
-    tasks.sort(key=lambda x: task_priority[x["priority"]])
+    tasks.sort(key=lambda x: task_priority[x["priority"].capitalize()])
 
 # Proses pengurutan data berdasarkan priority (High -> Medium -> Low)
 def urutkan_task_priority_dsc(tasks):
     task_priority = {"Low": 1, "Medium": 2, "High": 3}
-    tasks.sort(key=lambda x: task_priority[x["priority"]], reverse=True)
+    tasks.sort(key=lambda x: task_priority[x["priority"].capitalize()], reverse=True)
 
 # Proses pengurutan data berdasarkan status (Pending -> In Progress -> Completed)
 def urutkan_task_status_asc(tasks):
     task_status = {"Pending": 1, "In Progress": 2, "Completed": 3}
-    tasks.sort(key=lambda x: task_status[x["status"]])
-
+    tasks.sort(key=lambda x: task_status[x["status"].title()])
+    
 # Proses pengurutan data berdasarkan status (Completed -> In Progress -> Pending)
 def urutkan_task_status_dsc(tasks):
     task_status = {"Pending": 1, "In Progress": 2, "Completed": 3}
-    tasks.sort(key=lambda x: task_status[x["status"]], reverse=True)
+    tasks.sort(key=lambda x: task_status[x["status"].title()], reverse=True)
 
