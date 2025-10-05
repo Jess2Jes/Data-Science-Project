@@ -1,5 +1,7 @@
 from helpers.addData import *
 from helpers.dataFilters import *
+from helpers.laporan import *
+from helpers.sorter import *
 
 tasks = [
     {"id": 1, "name": "Kerjakan Tugas Basis Data", "deadline": "2025-10-05 13:00", "priority": "High", "status": "Pending"},
@@ -8,6 +10,64 @@ tasks = [
     {"id": 4, "name": "Rapat Tim", "deadline": "2025-10-04 15:00", "priority": "Low", "status": "Completed"},
     {"id": 5, "name": "Kerjakan Tugas PBO", "deadline": "2025-10-04 15:00", "priority": "High", "status": "Completed"},
 ]
+
+def menu_sortir():
+    while True:
+        print("\n────────────────────Pengurutan Task────────────────────")
+        print("1. Berdasarkan Deadline")
+        print("2. Berdasarkan Nama")
+        print("3. Berdasarkan Prioritas")
+        print("4. Berdasarkan Status")
+        print("5. Kembali")
+        pilihan_sort = input("Pilih opsi (1-5): ")
+
+        if pilihan_sort == "1":
+            arah = input("Ascending/Descending? ").lower()
+            if arah == "ascending":
+                urutkan_task_deadline_asc(tasks)
+            elif arah == "descending":
+                urutkan_task_deadline_dsc(tasks)
+            else:
+                print("Input salah")
+                continue
+            data_task("Tasks setelah pengurutan Deadline", tasks)
+
+        elif pilihan_sort == "2":
+            arah = input("Ascending/Descending? ").lower()
+            if arah == "ascending":
+                urutkan_task_name_asc(tasks)
+            elif arah == "descending":
+                urutkan_task_name_dsc(tasks)
+            else:
+                print("Input salah")
+                continue
+            data_task("Tasks setelah pengurutan Nama", tasks)
+
+        elif pilihan_sort == "3":
+            arah = input("Ascending/Descending? ").lower()
+            if arah == "ascending":
+                urutkan_task_priority_asc(tasks)
+            elif arah == "descending":
+                urutkan_task_priority_dsc(tasks)
+            else:
+                print("Input salah")
+                continue
+            data_task("Tasks setelah pengurutan Prioritas", tasks)
+
+        elif pilihan_sort == "4":
+            arah = input("Ascending/Descending? ").lower()
+            if arah == "ascending":
+                urutkan_task_status_asc(tasks)
+            elif arah == "descending":
+                urutkan_task_status_dsc(tasks)
+            else:
+                print("Input salah")
+                continue
+            data_task("Tasks setelah pengurutan Status", tasks)
+
+        elif pilihan_sort == "5":
+            break
+    
 def menu_filter_deadline():
     print("\nFilter berdasarkan deadline:")
     print("1. Hari ini")
@@ -79,9 +139,9 @@ while True :
     elif pilihan == "3":
         pass
     elif pilihan == "4":
-        pass
+        menu_sortir()
     elif pilihan == "5":
-        pass
+        laporan_statistik(tasks)
     elif pilihan == "6":
         menu_filter()
     elif pilihan == "7":
