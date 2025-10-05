@@ -100,7 +100,7 @@ def menu_filter():
         print("5. Keluar dari menu filter")
         print(f"{garis*2}")
 
-        pilihan_filter = input("Pilih menu (1-6): ")
+        pilihan_filter = input("Pilih menu (1-5): ")
 
         if pilihan_filter == "1":
             menu_filter_deadline()
