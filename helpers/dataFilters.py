@@ -8,7 +8,6 @@ def parse_deadline(s):
     except ValueError:
         return datetime.strptime(s, "%Y-%m-%d %H:%M")
 
-
 def get_top_tasks(tasks, n=3):
     """Ambil task terpenting berdasarkan prioritas & deadline"""
     sorted_tasks = sorted(
