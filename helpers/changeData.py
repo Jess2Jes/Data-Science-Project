@@ -59,9 +59,14 @@ def ubah_task(tasks, old_name, field, new_value):
 
 def selesaikan_task(tasks, name):
     for data in tasks:
-        if data["name"].lower() == name.lower():
+        if data["status"].lower() == "completed":
+            print(f"\nTask '{name}' sudah berstatus 'Selesai/Completed'!")
+            return True
+        
+        elif data["name"].lower() == name.lower():
             data["status"] = "Completed"
             print(f"\n🎉 Task '{name}' telah diselesaikan!")
             return True
+        
     print(f"\n⚠️ Task '{name}' tidak ditemukan.")
     return False
