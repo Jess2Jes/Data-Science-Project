@@ -33,10 +33,10 @@ def ubah_task(tasks, old_name, field, new_value):
 
             if field == "deadline":
                 try:
-                    dt = datetime.strptime(new_value, "%Y %d %B %H:%M")
+                    dt = datetime.strptime(new_value, "%Y-%m-%d %H:%M")
                     new_value = dt.strftime("%Y %d %B %H:%M")
                 except ValueError:
-                    print("\n⚠ Format deadline tidak valid! Gunakan format: YYYY DD Month HH:MM")
+                    print("\n⚠ Format deadline tidak valid! Gunakan format: YYYY-MM-DD HH:MM")
                     return False
 
             elif field == "priority":

@@ -177,7 +177,11 @@ while True :
     elif pilihan == "8":
         old_name = input("Nama task yang ingin diubah: ")
         field = input("Field yang ingin diubah (name/deadline/priority/status): ").lower()
-        new_value = input("Masukkan nilai baru: ")
+        if field == "deadline" :
+            new_value = input("Masukkan nilai baru (YYYY-MM-DD HH:MM): ")
+        else :
+            new_value = input("Masukkan nilai baru: ")
+            
         ubah_task(tasks, old_name, field, new_value)
         
     elif pilihan == "9":

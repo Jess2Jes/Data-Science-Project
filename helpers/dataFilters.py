@@ -48,9 +48,9 @@ def data_task(title, data):
         row = (
             str(t["id"]).ljust(col_widths["id"]) + " │ " +
             t["name"].capitalize().ljust(col_widths["name"]) + " │ " +
-            t["deadline"].capitalize().ljust(col_widths["deadline"]) + " │ " +
-            t["priority"].capitalize().ljust(col_widths["priority"]) + " │ " +
-            t["status"].capitalize().ljust(col_widths["status"])
+            t["deadline"].title().ljust(col_widths["deadline"]) + " │ " +
+            t["priority"].title().ljust(col_widths["priority"]) + " │ " +
+            t["status"].title().ljust(col_widths["status"])
         )
         print(row)
 
