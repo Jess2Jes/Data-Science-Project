@@ -1,5 +1,6 @@
 from helpers.addData import *
 from helpers.dataFilters import *
+from helpers.laporan import *
 
 tasks = [
     {"id": 1, "name": "Kerjakan Tugas Basis Data", "deadline": "2025-10-05 13:00", "priority": "High", "status": "Pending"},
@@ -8,6 +9,7 @@ tasks = [
     {"id": 4, "name": "Rapat Tim", "deadline": "2025-10-04 15:00", "priority": "Low", "status": "Completed"},
     {"id": 5, "name": "Kerjakan Tugas PBO", "deadline": "2025-10-04 15:00", "priority": "High", "status": "Completed"},
 ]
+garis = "─" * 25
 def menu_filter_deadline():
     print("\nFilter berdasarkan deadline:")
     print("1. Hari ini")
@@ -29,13 +31,13 @@ def menu_filter_deadline():
         
 def menu_filter():
     while True:
-        print("\n──────────Task Schedule Filter──────────")
+        print(f"\n{garis}Task Schedule Filter{garis}")
         print("1. Filter berdasarkan deadline")
         print("2. Filter berdasarkan prioritas")
         print("3. Filter berdasarkan status")
         print("4. Lihat TOP 3 Task Paling Penting")
         print("5. Keluar dari menu filter")
-        print("──────────────────────────────────────────")
+        print(f"{garis*2}")
 
         pilihan_filter = input("Pilih menu (1-6): ")
 
@@ -81,7 +83,7 @@ while True :
     elif pilihan == "4":
         pass
     elif pilihan == "5":
-        pass
+        laporan_statistik(tasks)
     elif pilihan == "6":
         menu_filter()
     elif pilihan == "7":
