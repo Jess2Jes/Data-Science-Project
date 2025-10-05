@@ -144,13 +144,6 @@ Follow these instructions to get a copy of the project up and running on your lo
       <br/>
       <a href="https://github.com/Milkdrinker-creator">Milkdrinker-creator</a>
     </td>
-        <td align="center" style="border: 1px solid #555; padding: 10px;">
-      <a href="https://github.com/Azelezasl">
-        <img src="https://github.com/Azelezasl.png" width="100" height="100" alt="Azelezasl" style="border-radius: 50%;"/>
-      </a>
-      <br/>
-      <a href="https://github.com/Azelezasl">Azelezasl</a>
-    </td>
     
   </tr>
 </table>
