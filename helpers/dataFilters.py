@@ -3,13 +3,17 @@ from datetime import datetime, timedelta
 priority_map = {"High": 3, "Medium": 2, "Low": 1}
 
 def parse_deadline(s):
-    return datetime.strptime(s, "%Y-%m-%d %H:%M")
+    try:
+        return datetime.strptime(s, "%Y %d %B %H:%M")
+    except ValueError:
+        return datetime.strptime(s, "%Y-%m-%d %H:%M")
+
 
 def get_top_tasks(tasks, n=3):
     """Ambil task terpenting berdasarkan prioritas & deadline"""
     sorted_tasks = sorted(
         tasks,
-        key=lambda t: (-priority_map[t["priority"]], parse_deadline(t["deadline"]))
+        key=lambda t: (-priority_map[t["priority"].capitalize()], parse_deadline(t["deadline"]))
     )
     return sorted_tasks[:n]
 
