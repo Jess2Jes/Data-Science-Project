@@ -23,7 +23,7 @@ def laporan_statistik(tasks, garis="─"):
     jumlah_selesai = 0
     for t in tasks:
         if t["status"].lower() == "completed":
-            start = datetime.strptime(t["deadline"], "%Y-%m-%d %H:%M")
+            start = datetime.strptime(t["deadline"], "%Y %d %B %H:%M")
             end = datetime.now()
             durasi = (end - start).days
             total_durasi += durasi
