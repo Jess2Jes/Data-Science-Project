@@ -105,11 +105,11 @@ def menu_filter():
         if pilihan_filter == "1":
             menu_filter_deadline()
         elif pilihan_filter == "2":
-            prio = input("Masukkan prioritas (High/Medium/Low): ")
+            prio = input("Masukkan prioritas (High/Medium/Low): ").capitalize()
             filter_by_priority(prio, tasks)
 
         elif pilihan_filter == "3":
-            stat = input("Masukkan status (Pending/In Progress/Completed): ")
+            stat = input("Masukkan status (Pending/In Progress/Completed): ").capitalize()
             filter_by_status(stat, tasks)
 
         elif pilihan_filter == "4":
