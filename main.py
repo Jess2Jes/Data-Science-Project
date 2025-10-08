@@ -24,6 +24,7 @@ def menu_sortir():
         print("4. Berdasarkan Status")
         print("5. Berdasarkan ID")
         print("6. Kembali")
+        print("─────────────────────────────────────────────────────────")
         pilihan_sort = input("Pilih opsi (1-6): ")
 
         if pilihan_sort == "1":
@@ -86,10 +87,12 @@ def menu_sortir():
     
 def menu_filter_deadline():
     print("\nFilter berdasarkan deadline:")
+    print("─────────────────────────────────────────────────────────")
     print("1. Hari ini")
     print("2. Besok")
     print("3. Minggu ini")
     print("4. Bulan ini")
+    print("─────────────────────────────────────────────────────────")
     pilihan_deadline = input("Pilih opsi (1-4): ")
 
     if pilihan_deadline == "1":
@@ -112,7 +115,6 @@ def menu_filter():
         print("4. Lihat TOP 3 Task Paling Penting")
         print("5. Keluar dari menu filter")
         print(f"{garis*2 + "─"*20}")
-
         pilihan_filter = input("Pilih menu (1-5): ")
 
         if pilihan_filter == "1":
