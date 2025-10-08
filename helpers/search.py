@@ -1,11 +1,3 @@
-##tasks = [
-##    {"id": 1, "name": "Kerjakan Tugas Basis Data", "deadline": "2025-10-05", "priority": "High", "status": "Pending"},
-##    {"id": 2, "name": "Belajar Algoritma", "deadline": "2025-10-06", "priority": "Medium", "status": "In Progress"},
-##    {"id": 3, "name": "Buat Slide Presentasi", "deadline": "2025-10-08", "priority": "High", "status": "Completed"},
-##    {"id": 4, "name": "Rapat Tim", "deadline": "2025-10-04", "priority": "Low", "status": "Pending"},
-##    {"id": 5, "name": "Kerjakan Tugas PBO", "deadline": "2025-10-04", "priority": "High", "status": "Pending"},
-##]
-
 def kemiripan(a, b):
     a, b = a.lower(), b.lower()
     sama = sum(1 for huruf in a if huruf in b)
