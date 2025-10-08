@@ -1,3 +1,5 @@
+from datetime import datetime
+
 def cetak_data_awal(tasks):
     print("\nDaftar Tugas Sebelum Dihapus\n")
     for idx, data in enumerate(tasks, start=1):
@@ -22,7 +24,6 @@ def cetak_data_hapus(tasks):
             print(f"{idx}. {data['name']}, {data['deadline']}, {data['priority']}, {data['status']}")
     else:
         print("Semua tugas sudah dihapus.")
-from datetime import datetime
 
 def ubah_task(tasks, old_name, field, new_value):
     for data in tasks:
