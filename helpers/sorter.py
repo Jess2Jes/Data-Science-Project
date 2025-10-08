@@ -1,18 +1,20 @@
+from datetime import datetime
+
 # Proses pengurutan data berdasarkan deadline (ascending)
 def urutkan_task_deadline_asc(tasks):
-    tasks.sort(key=lambda x: x["deadline"])
+    tasks.sort(key=lambda x: datetime.strptime(x["deadline"], "%Y %d %B %H:%M"))
 
 # Proses pengurutan data berdasarkan deadline (descending)
 def urutkan_task_deadline_dsc(tasks):
-    tasks.sort(key=lambda x: x["deadline"], reverse=True)
+    tasks.sort(key=lambda x: datetime.strptime(x["deadline"], "%Y %d %B %H:%M"), reverse=True)
 
 # Proses pengurutan data berdasarkan alphabetik (nama tugas) (ascending)
 def urutkan_task_name_asc(tasks):
-    tasks.sort(key=lambda x: x["name"])
+    tasks.sort(key=lambda x: x["name"].lower())
 
 # Proses pengurutan data berdasarkan alphabetik (nama tugas) (descending)
 def urutkan_task_name_dsc(tasks):
-    tasks.sort(key=lambda x: x["name"], reverse=True)
+    tasks.sort(key=lambda x: x["name"].lower(), reverse=True)
 
 # Proses pengurutan data berdasarkan id (ascending)
 def urutkan_task_id_asc(tasks):
