@@ -4,7 +4,6 @@ def tambah_task(tasks):
     while True :
         try:
             total_task = int(input("Berapa total task yang ingin ditambahkan : "))
-            print()
             break
         except ValueError:
             print("Input tidak valid. Harap masukkan angka.")
