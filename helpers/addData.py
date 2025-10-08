@@ -25,7 +25,7 @@ def tambah_task(tasks):
                 break
         
         while True:
-            task_time = input("Masukkan waktu task (YYYY-MM-DD HH:MM) SPASI TIDAK DIPERBOLEHKAN \n ");print()
+            task_time = input("Masukkan waktu task (YYYY-MM-DD HH:MM) SPASI TIDAK DIPERBOLEHKAN  SETELAH MM\n ");print()
             try : 
                 waktu = datetime.strptime(task_time, "%Y-%m-%d %H:%M")
                 if waktu <= datetime.now():
