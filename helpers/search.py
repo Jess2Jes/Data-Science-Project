@@ -24,7 +24,7 @@ def cari_task(tasks):
         else:
             print(f"\nHasil pencarian untuk => '{keyword}':\n")
             for idx, t in enumerate(found, start=1):
-                pnjg_garis = f"{idx}. {t['name']}, {t['deadline']}, {t['priority']}, {t['status']}"
+                pnjg_garis = f"{idx}. {t['name'].title()}, {t['deadline']}, {t['priority'].title()}, {t['status'].title()}"
                 garis = "─" * len(pnjg_garis)
                 print("\n" + garis)
                 print(pnjg_garis)
