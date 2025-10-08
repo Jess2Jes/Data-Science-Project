@@ -28,8 +28,6 @@ def laporan_statistik(tasks, garis="─"):
             durasi = abs((end - start)).days
             total_durasi += durasi
             jumlah_selesai += 1
-    rata_durasi = total_durasi / jumlah_selesai if jumlah_selesai else 0
-    lines.append(f"Rata-rata durasi tugas selesai: {rata_durasi:.2f} hari")
     lines.append("")
 
     # Prioritas
