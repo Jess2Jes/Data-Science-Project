@@ -22,8 +22,9 @@ def menu_sortir():
         print("2. Berdasarkan Nama")
         print("3. Berdasarkan Prioritas")
         print("4. Berdasarkan Status")
-        print("5. Kembali")
-        pilihan_sort = input("Pilih opsi (1-5): ")
+        print("5. Berdasarkan ID")
+        print("6. Kembali")
+        pilihan_sort = input("Pilih opsi (1-6): ")
 
         if pilihan_sort == "1":
             arah = input("Ascending/Descending? ").lower()
@@ -68,8 +69,19 @@ def menu_sortir():
                 print("Input salah")
                 continue
             data_task("Tasks setelah pengurutan Status", tasks)
-
+        
         elif pilihan_sort == "5":
+            arah = input("Ascending/Descending? ").lower()
+            if arah == "ascending":
+                urutkan_task_id_asc(tasks)
+            elif arah == "descending":
+                urutkan_task_id_dsc(tasks)
+            else:
+                print("Input salah")
+                continue
+            data_task("Tasks setelah pengurutan ID", tasks)
+
+        elif pilihan_sort == "6":
             break
     
 def menu_filter_deadline():
@@ -99,7 +111,7 @@ def menu_filter():
         print("3. Filter berdasarkan status")
         print("4. Lihat TOP 3 Task Paling Penting")
         print("5. Keluar dari menu filter")
-        print(f"{garis*2}")
+        print(f"{garis*2 + "─"*20}")
 
         pilihan_filter = input("Pilih menu (1-5): ")
 
