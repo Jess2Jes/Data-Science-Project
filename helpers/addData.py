@@ -59,10 +59,10 @@ def tambah_task(tasks):
         
         tasks.append({
             "id": next_id,
-            "name": task_name,
+            "name": task_name.title(),
             "deadline": waktu.strftime("%Y %d %B %H:%M"),  # konversi datetime to string
-            "priority": prioritas,
-            "status": status
+            "priority": prioritas.title(),
+            "status": status.title()
         })
         
         print(f"Task {next_id} : {task_name} berhasil ditambahkan.\n")

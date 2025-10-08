@@ -208,6 +208,7 @@ while True :
         selesaikan_task(tasks, name)
         
     elif pilihan == "10":
+        print("\nTerima kasih telah menggunakan App Demo kami.\n")
         break
     else:
         print("Pilihan tidak valid, coba lagi.")
