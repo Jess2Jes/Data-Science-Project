@@ -46,5 +46,3 @@ def cari_task(tasks):
             else:
                 print("Input tidak valid. Harap masukkan ('iya' / 'tidak')")
 
-
-cari_task(tasks)
