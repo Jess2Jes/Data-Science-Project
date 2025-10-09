@@ -11,6 +11,15 @@ def tambah_task(tasks):
         
     for t in range(total_task):
         next_id = max([t["id"] for t in tasks], default=0) + 1
+        """
+        Mengambil ID terbesar dari daftar task dan default=0 
+        digunakan jika daftar tugas kosong, 
+        sehingga max([]) tidak mmbuat program crash. 
+        Maka, ia akan mengembalikan nilai 0.
+        
+        Dan juga kl misalny ini agar id tersebut gausah diinput user dia akan otomatis 1 utkt ask pertama
+        misalnya belum ada task maka otomatis max(0) + 1 = 1 jadi id pertamanya adalah 1
+        """
         while True:
             task_name = str(input(f"Task {next_id} : ")).lower()
             dupe = False
@@ -34,15 +43,7 @@ def tambah_task(tasks):
                 break
             except ValueError:
                 print("Format waktu salah. Harap masukkan waktu dalam format YYYY-MM-DD HH:MM.")
-        """
-        Mengambil ID terbesar dari daftar task dan default=0 
-        digunakan jika daftar tugas kosong, 
-        sehingga max([]) tidak mmbuat program crash. 
-        Maka, ia akan mengembalikan nilai 0.
-        
-        Dan juga kl misalny ini agar id tersebut gausah diinput user dia akan otomatis 1 utkt ask pertama
-        misalnya belum ada task maka otomatis max(0) + 1 = 1 jadi id pertamanya adalah 1
-        """
+
         while True:
             prioritas = input("Masukkan prioritas task (High, Medium, Low): ").lower()
             if prioritas not in ("high", "medium", "low"):
