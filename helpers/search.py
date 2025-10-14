@@ -11,7 +11,6 @@ def cari_task(tasks):
         if not found:
             print(f"\nTask dengan nama '{keyword}' tidak ditemukan.")
 
-            # cari task paling mirip
             kandidat = None
             skor_tertinggi = 0
             for t in tasks:
@@ -19,7 +18,7 @@ def cari_task(tasks):
                 if skor > skor_tertinggi:
                     skor_tertinggi = skor
                     kandidat = t
-            if skor_tertinggi >= 0.4:  # batas kemiripan 40%
+            if skor_tertinggi >= 0.4: 
                 print(f"Mungkin maksud Anda: '{kandidat['name']}'?")
         else:
             print(f"\nHasil pencarian untuk => '{keyword}':\n")
@@ -32,9 +31,8 @@ def cari_task(tasks):
             lanjut = input("\nApakah ingin lanjut cari (iya/tidak)? ").lower()
             if lanjut == "tidak":
                 print("\nPencarian selesai.")
-                return  # keluar dari seluruh fungsi
+                return 
             elif lanjut == "iya":
-                break  # keluar dari loop 'lanjut' dan kembali ke atas (input keyword baru)
+                break  
             else:
                 print("Input tidak valid. Harap masukkan ('iya' / 'tidak')")
-

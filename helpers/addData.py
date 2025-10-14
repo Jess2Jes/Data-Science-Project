@@ -1,71 +1,63 @@
 from datetime import datetime
 
-def tambah_task(tasks):
-    while True :
+def _prompt_int(prompt: str) -> int:
+    while True:
         try:
-            total_task = int(input("Berapa total task yang ingin ditambahkan : "))
-            break
+            return int(input(prompt))
         except ValueError:
             print("Input tidak valid. Harap masukkan angka.")
-            continue
-        
-    for t in range(total_task):
-        next_id = max([t["id"] for t in tasks], default=0) + 1
-        """
-        Mengambil ID terbesar dari daftar task dan default=0 
-        digunakan jika daftar tugas kosong, 
-        sehingga max([]) tidak mmbuat program crash. 
-        Maka, ia akan mengembalikan nilai 0.
-        
-        Dan juga kl misalny ini agar id tersebut gausah diinput user dia akan otomatis 1 utkt ask pertama
-        misalnya belum ada task maka otomatis max(0) + 1 = 1 jadi id pertamanya adalah 1
-        """
-        while True:
-            task_name = str(input(f"Task {next_id} : ")).lower()
-            dupe = False
-            for t in tasks:
-                if task_name.lower() == t["name"].lower():
-                    dupe = True
-                    break
-            if dupe:
-                print("Task sudah ada.\n")
-                continue
-            else:
-                break
-        
-        while True:
-            task_time = input("Masukkan waktu task (YYYY-MM-DD HH:MM) SPASI TIDAK DIPERBOLEHKAN SETELAH MM\n ");print()
-            try : 
-                waktu = datetime.strptime(task_time, "%Y-%m-%d %H:%M")
-                if waktu <= datetime.now():
-                    print("Waktu task tidak boleh sebelum waktu saat ini.")
-                    continue
-                break
-            except ValueError:
-                print("Format waktu salah. Harap masukkan waktu dalam format YYYY-MM-DD HH:MM.")
 
-        while True:
-            prioritas = input("Masukkan prioritas task (High, Medium, Low): ").lower()
-            if prioritas not in ("high", "medium", "low"):
-                print("Prioritas tidak valid. Harap masukkan High, Medium, atau Low.")
+def _is_unique_name(tasks, name_lower: str) -> bool:
+    return all(name_lower != t["name"].lower() for t in tasks)
+
+def _prompt_unique_task_name(tasks, next_id: int) -> str:
+    while True:
+        task_name = str(input(f"Task {next_id} : ")).strip()
+        if not task_name:
+            print("Nama task tidak boleh kosong.\n")
+            continue
+        if not _is_unique_name(tasks, task_name.lower()):
+            print("Task sudah ada.\n")
+            continue
+        return task_name
+
+def _prompt_future_datetime() -> datetime:
+    while True:
+        task_time = input("Masukkan waktu task (YYYY-MM-DD HH:MM) SPASI TIDAK DIPERBOLEHKAN SETELAH MM\n ")
+        print()
+        try:
+            waktu = datetime.strptime(task_time, "%Y-%m-%d %H:%M")
+            if waktu <= datetime.now():
+                print("Waktu task tidak boleh sebelum waktu saat ini.")
                 continue
-            break
-        
-        while True:
-            status = input("Masukkan status task (Pending, In Progress, Completed): ").lower()
-            if status not in ("pending", "in progress", "completed"):
-                print("Status tidak valid. Harap masukkan Pending, In Progress, atau Completed.")
-                continue
-            break
-        
+            return waktu
+        except ValueError:
+            print("Format waktu salah. Harap masukkan waktu dalam format YYYY-MM-DD HH:MM.")
+
+def _prompt_choice(prompt: str, allowed: tuple[str, ...]) -> str:
+    allowed_lower = tuple(a.lower() for a in allowed)
+    while True:
+        val = input(prompt).strip().lower()
+        if val not in allowed_lower:
+            print(f"Input tidak valid. Harap masukkan salah satu dari: {', '.join(allowed)}.")
+            continue
+        return val.title()
+
+def tambah_task(tasks):
+    total_task = _prompt_int("Berapa total task yang ingin ditambahkan : ")
+    for _ in range(total_task):
+        next_id = max([t["id"] for t in tasks], default=0) + 1
+
+        task_name = _prompt_unique_task_name(tasks, next_id)
+        waktu = _prompt_future_datetime()
+        prioritas = _prompt_choice("Masukkan prioritas task (High, Medium, Low): ", ("High", "Medium", "Low"))
+        status = _prompt_choice("Masukkan status task (Pending, In Progress, Completed): ", ("Pending", "In Progress", "Completed"))
+
         tasks.append({
             "id": next_id,
             "name": task_name.title(),
-            "deadline": waktu.strftime("%Y %d %B %H:%M"),  # konversi datetime to string
-            "priority": prioritas.title(),
-            "status": status.title()
+            "deadline": waktu.strftime("%Y %d %B %H:%M"),
+            "priority": prioritas,
+            "status": status
         })
-        
         print(f"Task {next_id} : {task_name} berhasil ditambahkan.\n")
-
-                

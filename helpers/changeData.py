@@ -14,7 +14,7 @@ def hapus_data(tasks, name):
 
 def hapus_task_selesai(tasks):
     for i in range(len(tasks)-1, -1, -1):
-        if tasks[i]["status"] == "Completed" :
+        if tasks[i]["status"].lower() == "completed":
             tasks.pop(i)
 
 def cetak_data_hapus(tasks):
@@ -25,51 +25,61 @@ def cetak_data_hapus(tasks):
     else:
         print("Semua tugas sudah dihapus.")
 
+def _format_deadline_value(value: str) -> str:
+    try:
+        dt = datetime.strptime(value, "%Y-%m-%d %H:%M")
+        return dt.strftime("%Y %d %B %H:%M")
+    except ValueError as e:
+        raise ValueError("⚠ Format deadline tidak valid! Gunakan format: YYYY-MM-DD HH:MM") from e
+
+def _normalize_priority(value: str) -> str:
+    allowed = {"high": "High", "medium": "Medium", "low": "Low"}
+    key = value.strip().lower()
+    if key not in allowed:
+        raise ValueError("⚠ Prioritas hanya boleh: High / Medium / Low")
+    return allowed[key]
+
+def _normalize_status(value: str) -> str:
+    allowed = {"pending": "Pending", "in progress": "In Progress", "completed": "Completed"}
+    key = value.strip().lower()
+    if key not in allowed:
+        raise ValueError("⚠ Status hanya boleh: Pending / In Progress / Completed")
+    return allowed[key]
+
 def ubah_task(tasks, old_name, field, new_value):
-    for data in tasks:
-        if data["name"].lower() == old_name.lower():
-            if field not in data:
-                print(f"\n⚠ Field '{field}' tidak ditemukan!")
-                return False
+    task = next((d for d in tasks if d["name"].lower() == old_name.lower()), None)
+    if not task:
+        print(f"\n⚠ Task '{old_name}' tidak ditemukan.")
+        return False
 
-            if field == "deadline":
-                try:
-                    dt = datetime.strptime(new_value, "%Y-%m-%d %H:%M")
-                    new_value = dt.strftime("%Y %d %B %H:%M")
-                except ValueError:
-                    print("\n⚠ Format deadline tidak valid! Gunakan format: YYYY-MM-DD HH:MM")
-                    return False
+    if field not in task:
+        print(f"\n⚠ Field '{field}' tidak ditemukan!")
+        return False
 
-            elif field == "priority":
-                if new_value not in ["High", "Medium", "Low", "high", "medium", "low"]:
-                    print("\n⚠ Prioritas hanya boleh: High / Medium / Low")
-                    return False
+    transformers = {
+        "deadline": _format_deadline_value,
+        "priority": _normalize_priority,
+        "status": _normalize_status,
+    }
 
-            elif field == "status":
-                if new_value not in ["Pending", "In Progress", "Completed", "pending", "in progress", "completed"]:
-                    print("\n⚠ Status hanya boleh: Pending / In Progress / Completed")
-                    return False
+    try:
+        transform = transformers.get(field, lambda x: x)
+        task[field] = transform(new_value)
+    except ValueError as ve:
+        print(f"\n{ve}")
+        return False
 
-            data[field] = new_value
-            print(f"\n✅ Task '{old_name}' berhasil diubah: {field} → {new_value}")
-            return True
-
-    print(f"\n⚠ Task '{old_name}' tidak ditemukan.")
-    return False
-
+    print(f"\n✅ Task '{old_name}' berhasil diubah: {field} → {task[field]}")
+    return True
 
 def selesaikan_task(tasks, name):
-
     for data in tasks:
-        
         if data["name"].lower() == name.lower():
-            
             if data["status"].lower() == "completed":
                 print(f"\nTask '{name}' sudah berstatus 'Selesai/Completed'!")
             else:
                 data["status"] = "Completed"
                 print(f"\n🎉 Task '{name}' telah diselesaikan!")
                 return True
-        
     print(f"\n⚠️ Task '{name}' tidak ditemukan.")
     return False
