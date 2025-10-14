@@ -9,10 +9,8 @@ from helpers.sorter import (
     urutkan_task_id_asc, urutkan_task_id_dsc
 )
 from helpers.changeData import (
-    hapus_data, hapus_task_selesai,
-    ubah_task, selesaikan_task
+    ubah_task, selesaikan_task, hapus_data, hapus_task_selesai
 )
-
 from helpers.search import cari_task
 
 tasks = [
@@ -23,78 +21,64 @@ tasks = [
     {"id": 5, "name": "Kerjakan Tugas PBO", "deadline": "2025 04 October 15:00", "priority": "High", "status": "Completed"},
 ]
 
-garis = "─" *25
+garis = "─" * 25
 
 def menu_sortir():
+    def mline():
+        print("─" * 54)
+
+    sort_map = {
+        "1": ("Deadline", {
+            "ascending": urutkan_task_deadline_asc,
+            "descending": urutkan_task_deadline_dsc
+        }),
+        "2": ("Nama", {
+            "ascending": urutkan_task_name_asc,
+            "descending": urutkan_task_name_dsc
+        }),
+        "3": ("Prioritas", {
+            "ascending": urutkan_task_priority_asc,
+            "descending": urutkan_task_priority_dsc
+        }),
+        "4": ("Status", {
+            "ascending": urutkan_task_status_asc,
+            "descending": urutkan_task_status_dsc
+        }),
+        "5": ("ID", {
+            "ascending": urutkan_task_id_asc,
+            "descending": urutkan_task_id_dsc
+        }),
+    }
+
     while True:
-        print("\n────────────────────Pengurutan Task────────────────────")
+        print("\n──────────────────────Pengurutan Task──────────────────────")
         print("1. Berdasarkan Deadline")
         print("2. Berdasarkan Nama")
         print("3. Berdasarkan Prioritas")
         print("4. Berdasarkan Status")
         print("5. Berdasarkan ID")
         print("6. Kembali")
-        print("─────────────────────────────────────────────────────────")
-        pilihan_sort = input("Pilih opsi (1-6): ")
+        mline()
+        pilihan_sort = input("Pilih opsi (1-6): ").strip()
 
-        if pilihan_sort == "1":
-            arah = input("Ascending/Descending? ").lower()
-            if arah == "ascending":
-                urutkan_task_deadline_asc(tasks)
-            elif arah == "descending":
-                urutkan_task_deadline_dsc(tasks)
-            else:
-                print("Input salah")
-                continue
-            data_task("Tasks setelah pengurutan Deadline", tasks)
-
-        elif pilihan_sort == "2":
-            arah = input("Ascending/Descending? ").lower()
-            if arah == "ascending":
-                urutkan_task_name_asc(tasks)
-            elif arah == "descending":
-                urutkan_task_name_dsc(tasks)
-            else:
-                print("Input salah")
-                continue
-            data_task("Tasks setelah pengurutan Nama", tasks)
-
-        elif pilihan_sort == "3":
-            arah = input("Ascending/Descending? ").lower()
-            if arah == "ascending":
-                urutkan_task_priority_asc(tasks)
-            elif arah == "descending":
-                urutkan_task_priority_dsc(tasks)
-            else:
-                print("Input salah")
-                continue
-            data_task("Tasks setelah pengurutan Prioritas", tasks)
-
-        elif pilihan_sort == "4":
-            arah = input("Ascending/Descending? ").lower()
-            if arah == "ascending":
-                urutkan_task_status_asc(tasks)
-            elif arah == "descending":
-                urutkan_task_status_dsc(tasks)
-            else:
-                print("Input salah")
-                continue
-            data_task("Tasks setelah pengurutan Status", tasks)
-        
-        elif pilihan_sort == "5":
-            arah = input("Ascending/Descending? ").lower()
-            if arah == "ascending":
-                urutkan_task_id_asc(tasks)
-            elif arah == "descending":
-                urutkan_task_id_dsc(tasks)
-            else:
-                print("Input salah")
-                continue
-            data_task("Tasks setelah pengurutan ID", tasks)
-
-        elif pilihan_sort == "6":
+        if pilihan_sort == "6":
             break
-    
+
+        cfg = sort_map.get(pilihan_sort)
+        if not cfg:
+            print("Pilihan tidak valid.")
+            continue
+
+        label, funcs = cfg
+        arah = input("Ascending/Descending? ").strip().lower()
+        func = funcs.get(arah)
+        if not func:
+            print("Input salah")
+            continue
+
+        func(tasks)
+        data_task(f"Tasks setelah pengurutan {label}", tasks)
+
 def menu_filter_deadline():
     print("\nFilter berdasarkan deadline:")
     print("─────────────────────────────────────────────────────────")
@@ -115,7 +99,7 @@ def menu_filter_deadline():
         filter_by_deadline("this month", tasks)
     else:
         print("Pilihan tidak valid.")
-        
+
 def menu_filter():
     while True:
         print(f"\n{garis}Task Schedule Filter{garis}")
@@ -124,7 +108,7 @@ def menu_filter():
         print("3. Filter berdasarkan status")
         print("4. Lihat TOP 3 Task Paling Penting")
         print("5. Keluar dari menu filter")
-        print(f"{garis*2 + "─"*20}")
+        print(f"{garis*2 + '─'*20}")
         pilihan_filter = input("Pilih menu (1-5): ")
 
         if pilihan_filter == "1":
@@ -132,20 +116,17 @@ def menu_filter():
         elif pilihan_filter == "2":
             prio = input("Masukkan prioritas (High/Medium/Low): ").capitalize()
             filter_by_priority(prio, tasks)
-
         elif pilihan_filter == "3":
             stat = input("Masukkan status (Pending/In Progress/Completed): ").capitalize()
             filter_by_status(stat, tasks)
-
         elif pilihan_filter == "4":
             data_task("TOP 3 Task Paling Penting", get_top_tasks(tasks, 3))
-
         elif pilihan_filter == "5":
             print("Kembali ke menu utama.")
             break
         else:
             print("Pilihan tidak valid, coba lagi.")
-    
+
 def menu_utama():
     print("\n╭──────────────────────────────╮")
     print("│         📜 MAIN MENU         │")
@@ -163,28 +144,21 @@ def menu_utama():
     print("│ 10. 🚪 Keluar                 │")
     print("╰───────────────────────────────╯")
 
-    
-while True :
+while True:
     menu_utama()
     pilihan = input("Pilihan : ")
     if pilihan == "1":
         tambah_task(tasks)
-        
     elif pilihan == "2":
         data_task("Semua Task", tasks)
-        
     elif pilihan == "3":
         cari_task(tasks)
-        
     elif pilihan == "4":
         menu_sortir()
-        
     elif pilihan == "5":
         laporan_statistik(tasks)
-        
     elif pilihan == "6":
         menu_filter()
-        
     elif pilihan == "7":
         print("Hapus Task:")
         print("1. Hapus task secara spesifik")
@@ -198,25 +172,21 @@ while True :
             else:
                 print(f"\n⚠️ Tugas '{hapus}' tidak ditemukan!")
         elif opsi_hapus == "2":
-            hapus_task_selesai(tasks)  
+            hapus_task_selesai(tasks)
             print("\n✅ Semua task yang selesai berhasil dihapus!")
         else:
             print("Pilihan tidak valid, coba lagi.")
-
     elif pilihan == "8":
         old_name = input("Nama task yang ingin diubah: ")
         field = input("Field yang ingin diubah (name/deadline/priority/status): ").lower()
-        if field == "deadline" :
+        if field == "deadline":
             new_value = input("Masukkan nilai baru (YYYY-MM-DD HH:MM): ")
-        else :
+        else:
             new_value = input("Masukkan nilai baru: ")
-            
         ubah_task(tasks, old_name, field, new_value)
-        
     elif pilihan == "9":
         name = input("Nama task yang ingin diselesaikan: ").lower()
         selesaikan_task(tasks, name)
-        
     elif pilihan == "10":
         print("\nTerima kasih telah menggunakan App Demo kami.\n")
         break
