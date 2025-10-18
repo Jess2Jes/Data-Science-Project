@@ -7,9 +7,8 @@ def laporan_statistik(tasks, garis="─"):
     lines = []
 
     lines.append(f"Total tugas: {len(tasks)}")
-    lines.append("")  # empty line for spacing
+    lines.append("")  
 
-    # Status
     lines.append("Jumlah tugas per status:")
     stat_status = {}
     for t in tasks:
@@ -18,7 +17,6 @@ def laporan_statistik(tasks, garis="─"):
         lines.append(f"  - {status}: {jumlah}")
     lines.append("")
 
-    # Durasi tugas selesai
     total_durasi = 0
     jumlah_selesai = 0
     for t in tasks:
@@ -31,7 +29,6 @@ def laporan_statistik(tasks, garis="─"):
 
     lines.append("")
 
-    # Prioritas
     lines.append("Jumlah tugas per prioritas:")
     stat_priority = {}
     for t in tasks:
@@ -40,7 +37,6 @@ def laporan_statistik(tasks, garis="─"):
         lines.append(f"  - {prio}: {jumlah}")
     lines.append("")
 
-    # Tugas tertinggi & terendah
     priority_map = {"High": 3, "Medium": 2, "Low": 1}
     tertinggi = max(tasks, key=lambda x: priority_map.get(x["priority"], 0))
     terendah = min(tasks, key=lambda x: priority_map.get(x["priority"], 0))
@@ -49,10 +45,8 @@ def laporan_statistik(tasks, garis="─"):
     lines.append(f"Tugas dengan prioritas terendah ({terendah['priority']}):")
     lines.append(f"  {terendah['name']} (status: {terendah['status']})")
 
-    # Calculate max line length
     max_length = max(len(line) for line in lines)
 
-    # Build the box
     print(f"┌{garis * (max_length + 2)}┐")
     print(f"│ {'Laporan Statistik'.center(max_length)} │")
     print(f"├{garis * (max_length + 2)}┤")

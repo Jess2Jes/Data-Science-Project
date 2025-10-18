@@ -12,6 +12,7 @@ from helpers.changeData import (
     ubah_task, selesaikan_task, hapus_data, hapus_task_selesai
 )
 from helpers.search import cari_task
+INVALID_CHOICE = "Pilihan tidak valid, coba lagi."
 
 tasks = [
     {"id": 1, "name": "Kerjakan Tugas Basis Data", "deadline": "2025 05 October 13:00", "priority": "High", "status": "Pending"},
@@ -125,7 +126,7 @@ def menu_filter():
             print("Kembali ke menu utama.")
             break
         else:
-            print("Pilihan tidak valid, coba lagi.")
+            print(INVALID_CHOICE)
 
 def menu_utama():
     print("\n╭──────────────────────────────╮")
@@ -175,7 +176,7 @@ while True:
             hapus_task_selesai(tasks)
             print("\n✅ Semua task yang selesai berhasil dihapus!")
         else:
-            print("Pilihan tidak valid, coba lagi.")
+            print(INVALID_CHOICE)
     elif pilihan == "8":
         old_name = input("Nama task yang ingin diubah: ")
         field = input("Field yang ingin diubah (name/deadline/priority/status): ").lower()
@@ -191,4 +192,4 @@ while True:
         print("\nTerima kasih telah menggunakan App Demo kami.\n")
         break
     else:
-        print("Pilihan tidak valid, coba lagi.")
+        print(INVALID_CHOICE)
