@@ -70,7 +70,7 @@ Follow these instructions to get a copy of the project up and running on your lo
 
 1.  **Clone the repository (or download the files):**
     ```sh
-    git clone [https://github.com/Dendroculus/your-repo-name.git](https://github.com/Dendroculus/your-repo-name.git)
+    git clone [https://github.com/Yoruxyv/your-repo-name.git](https://github.com/Yoruxyv/your-repo-name.git)
     ```
 2.  **Navigate to the project directory:**
     ```sh
@@ -104,11 +104,11 @@ Follow these instructions to get a copy of the project up and running on your lo
       <a href="https://github.com/Jess2Jes">Jess2Jes</a>
     </td>
     <td align="center" style="border: 1px solid #555; padding: 10px;">
-      <a href="https://github.com/Dendroculus">
-        <img src="https://github.com/Dendroculus.png" width="100" height="100" alt="Hans 展豪" style="border-radius: 50%;"/>
+      <a href="https://github.com/Yoruxyv">
+        <img src="https://github.com/Yoruxyv.png" width="100" height="100" alt="Hans 展豪" style="border-radius: 50%;"/>
       </a>
       <br/>
-      <a href="https://github.com/Dendroculus">Hans 展豪</a>
+      <a href="https://github.com/Yoruxyv">Hans 展豪</a>
     </td>
     <td align="center" style="border: 1px solid #555; padding: 10px;">
       <a href="https://github.com/Solynixx">

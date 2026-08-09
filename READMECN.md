@@ -71,7 +71,7 @@ your-project-name/
 
 1.  **克隆仓库（或下载文件）：**
     ```sh
-    git clone [https://github.com/Dendroculus/your-repo-name.git](https://github.com/Dendroculus/your-repo-name.git)
+    git clone [https://github.com/Yoruxyv/your-repo-name.git](https://github.com/Yoruxyv/your-repo-name.git)
     ```
 2.  **进入项目目录：**
     ```sh
@@ -105,11 +105,11 @@ your-project-name/
       <a href="https://github.com/Jess2Jes">Jess2Jes</a>
     </td>
     <td align="center" style="border: 1px solid #555; padding: 10px;">
-      <a href="https://github.com/Dendroculus">
-        <img src="https://github.com/Dendroculus.png" width="100" height="100" alt="Hans 展豪" style="border-radius: 50%;"/>
+      <a href="https://github.com/Yoruxyv">
+        <img src="https://github.com/Yoruxyv.png" width="100" height="100" alt="Hans 展豪" style="border-radius: 50%;"/>
       </a>
       <br/>
-      <a href="https://github.com/Dendroculus">Hans 展豪</a>
+      <a href="https://github.com/Yoruxyv">Hans 展豪</a>
     </td>
     <td align="center" style="border: 1px solid #555; padding: 10px;">
       <a href="https://github.com/Solynixx">

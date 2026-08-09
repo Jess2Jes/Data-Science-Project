@@ -69,7 +69,7 @@ Ikuti instruksi berikut untuk menjalankan proyek ini di mesin lokal Anda.
 
 1.  **Clone repositori (atau unduh file):**
     ```sh
-    git clone [https://github.com/Dendroculus/nama-repo-anda.git](https://github.com/Dendroculus/nama-repo-anda.git)
+    git clone [https://github.com/Yoruxyv/nama-repo-anda.git](https://github.com/Yoruxyv/nama-repo-anda.git)
     ```
 2.  **Masuk ke direktori proyek:**
     ```sh
@@ -103,11 +103,11 @@ Ikuti instruksi berikut untuk menjalankan proyek ini di mesin lokal Anda.
       <a href="https://github.com/Jess2Jes">Jess2Jes</a>
     </td>
     <td align="center" style="border: 1px solid #555; padding: 10px;">
-      <a href="https://github.com/Dendroculus">
-        <img src="https://github.com/Dendroculus.png" width="100" height="100" alt="Hans 展豪" style="border-radius: 50%;"/>
+      <a href="https://github.com/Yoruxyv">
+        <img src="https://github.com/Yoruxyv.png" width="100" height="100" alt="Hans 展豪" style="border-radius: 50%;"/>
       </a>
       <br/>
-      <a href="https://github.com/Dendroculus">Hans 展豪</a>
+      <a href="https://github.com/Yoruxyv">Hans 展豪</a>
     </td>
     <td align="center" style="border: 1px solid #555; padding: 10px;">
       <a href="https://github.com/Solynixx">
